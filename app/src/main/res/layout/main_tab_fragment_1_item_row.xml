@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginBottom="36dp"
+    android:clipChildren="false">
+
+    <LinearLayout
+        android:layout_width="305dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:clipChildren="false">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:clipChildren="false">
+
+            <FrameLayout
+                android:id="@+id/main_tab_fragment_1_item_row_imgView_contain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipChildren="false">
+
+                <ImageView
+                    android:id="@+id/main_tab_fragment_1_item_row_imgView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+
+                <View
+                    android:layout_width="50dp"
+                    android:layout_height="26dp"
+                    android:layout_gravity="bottom|left"
+                    android:background="@color/main_bg" />
+            </FrameLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_gravity="bottom|left"
+                android:background="@color/main_bg">
+
+                <TextView
+                    android:id="@+id/main_tab_fragment_1_item_row_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="9dp"
+                    android:layout_marginRight="9dp"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:textAlignment="center"
+                    android:textColor="@color/travel"
+                    android:textSize="17sp"
+                    tools:text="travel" />
+
+            </RelativeLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/main_tab_fragment_1_item_row_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="9dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/main_tab_fragment_1_item_row_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/noto_serif_bold"
+                    android:lineSpacingExtra="10sp"
+                    android:maxLines="2"
+                    android:textAllCaps="false"
+                    android:textColor="#ffffff"
+                    android:textSize="22sp"
+                    tools:text="beauté de l’espace Dia:Beacon" />
+
+                <TextView
+                    android:id="@+id/main_tab_fragment_1_item_row_subTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans"
+                    android:lineSpacingExtra="7sp"
+                    android:maxLines="2"
+                    android:textColor="@color/grey_1"
+                    android:textSize="16sp"
+                    tools:text="Petite ville Beacon près de rivière Hudson, en dehors des villes de N..." />
+
+            </LinearLayout>
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

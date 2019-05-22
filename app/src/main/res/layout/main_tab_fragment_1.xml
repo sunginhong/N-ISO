@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.n_iso.Main_TabFragment1_NestedScrollingView
+        android:id="@+id/main_tab_fragment_1_nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/main_tab_fragment_1_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="22sp"
+                    android:textColor="#ffffff"
+                    android:fontFamily="@font/noto_serif_bold"
+                    android:lineSpacingExtra="10sp"
+                    android:text="네이버 디자인블로그 소식" />
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/main_tab_fragment_1_vp"
+                    android:layout_width="match_parent"
+                    android:layout_height="375dp"
+                    android:layout_marginTop="20dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.example.n_iso.Main_TabFragment1_NestedScrollingView>
+
+
+</LinearLayout>

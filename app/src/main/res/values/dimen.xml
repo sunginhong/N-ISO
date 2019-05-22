@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="mainBottom_toolBar__Height">56dp</dimen>
+    <dimen name="mainBottom_bottomBar__Height">56dp</dimen>
+    <dimen name="mainBottom_bottomBar__Height_margin">-56dp</dimen>
+    <dimen name="main_card_image_margin_left">19dp</dimen>
+</resources>
