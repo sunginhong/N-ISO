@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:orientation="vertical" >
 
     <com.example.n_iso.Main_TabFragment1_NestedScrollingView
         android:id="@+id/main_tab_fragment_1_nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:fillViewport="true"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants"
             android:orientation="vertical">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/main_tab_fragment_1_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </android.support.v7.widget.RecyclerView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -33,6 +33,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/noto_serif_bold"
+                    android:lineSpacingExtra="10sp"
+                    android:text="RECENT"
+                    android:textColor="#ffffff"
+                    android:textSize="22sp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/main_tab_fragment_1_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginBottom="20dp"
                     android:textSize="22sp"
                     android:textColor="#ffffff"
                     android:fontFamily="@font/noto_serif_bold"
@@ -42,8 +70,7 @@
                 <android.support.v4.view.ViewPager
                     android:id="@+id/main_tab_fragment_1_vp"
                     android:layout_width="match_parent"
-                    android:layout_height="375dp"
-                    android:layout_marginTop="20dp" />
+                    android:layout_height="375dp" />
             </LinearLayout>
 
         </LinearLayout>

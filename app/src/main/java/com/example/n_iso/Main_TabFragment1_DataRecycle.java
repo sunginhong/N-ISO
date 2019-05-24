@@ -4,12 +4,14 @@ public class Main_TabFragment1_DataRecycle {
 
     public String category;
     public String title;
+    public String subtitle;
     public String image;
     public String script;
 
-    public Main_TabFragment1_DataRecycle(String category, String title, String image, String script) {
+    public Main_TabFragment1_DataRecycle(String category, String title, String subtitle, String image) {
         this.category = category;
         this.title = title;
+        this.subtitle = subtitle;
         this.image = image;
         this.script = script;
     }
@@ -27,6 +29,14 @@ public class Main_TabFragment1_DataRecycle {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
     }
 
     public String getImage() {

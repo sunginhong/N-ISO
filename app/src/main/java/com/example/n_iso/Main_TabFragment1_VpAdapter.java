@@ -60,7 +60,6 @@ public class Main_TabFragment1_VpAdapter extends PagerAdapter implements View.On
         view = mInflater.inflate(R.layout.main_tab_fragment_1_item_pager, null);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        ((ViewPager)container).addView(view, i);
         ((ViewPager)container).addView(view);
 
         RelativeLayout main_tab_fragment_1_item_pager_item = view.findViewById(R.id.main_tab_fragment_1_item_pager_item);

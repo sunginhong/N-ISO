@@ -52,7 +52,7 @@ public class Main_TabFragment1_RecyclerAdapter extends RecyclerView.Adapter<Main
 
         myHolder.imageViewContain.setId(i);
         myHolder.titleTextView.setText(list.get(i).getTitle());
-        myHolder.scriptTextView.setText(list.get(i).getScript());
+        myHolder.subtTextView.setText(list.get(i).getSubtitle());
 
         int row_top_margin = (int)context.getResources().getDimension(R.dimen.main_card_image_margin_left);
 
@@ -98,7 +98,7 @@ public class Main_TabFragment1_RecyclerAdapter extends RecyclerView.Adapter<Main
         FrameLayout imageViewContain;
         ImageView imageView;
         TextView titleTextView;
-        TextView scriptTextView;
+        TextView subtTextView;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
@@ -107,7 +107,7 @@ public class Main_TabFragment1_RecyclerAdapter extends RecyclerView.Adapter<Main
             imageViewContain = itemView.findViewById(R.id.main_tab_fragment_1_item_row_imgView_contain);
             imageView = itemView.findViewById(R.id.main_tab_fragment_1_item_row_imgView);
             titleTextView = itemView.findViewById(R.id.main_tab_fragment_1_item_row_textView);
-            scriptTextView = itemView.findViewById(R.id.main_tab_fragment_1_item_row_subTextView);
+            subtTextView = itemView.findViewById(R.id.main_tab_fragment_1_item_row_subTextView);
         }
 
         public void setId(int i) {

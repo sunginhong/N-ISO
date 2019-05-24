@@ -1,0 +1,120 @@
+package com.example.n_iso;
+
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main_TabFragment2_RecyclerAdapter extends RecyclerView.Adapter<Main_TabFragment2_RecyclerAdapter.MyHolder>  implements Filterable, View.OnClickListener {
+
+    Context context;
+    List<Main_TabFragment2_DataRecycle> list = new ArrayList<>();
+    List<Main_TabFragment2_DataRecycle> list1 = new ArrayList<>();
+
+    public Main_TabFragment2_RecyclerAdapter(Context context, List<Main_TabFragment2_DataRecycle> list) {
+        this.context = context;
+        this.list = list;
+        this.list1 = list;
+    }
+
+    @NonNull
+    @Override
+    public Main_TabFragment2_RecyclerAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+
+        View view = LayoutInflater.from(context).inflate(R.layout.main_tab_fragment_2_item_row,viewGroup,false);
+        view.setId(i);
+        view.setOnClickListener(this);
+
+        return new Main_TabFragment2_RecyclerAdapter.MyHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull Main_TabFragment2_RecyclerAdapter.MyHolder myHolder, int i) {
+        myHolder.setId(i);
+        myHolder.titleTextView.setText(list.get(i).getTitle());
+        myHolder.subtTextView.setText(list.get(i).getSubtitle());
+        Glide.with(context)
+                .load(list.get(i).getImage())
+                .into(myHolder.imageView);
+    }
+
+    @Override
+    public int getItemCount() {
+        return list.size();
+    }
+
+    public void onClick(View view) {
+
+    }
+
+    public static class MyHolder extends RecyclerView.ViewHolder{
+
+        TextView titleTextView;
+        TextView subtTextView;
+        ImageView imageView;
+
+        public MyHolder(@NonNull View itemView) {
+            super(itemView);
+            titleTextView = itemView.findViewById(R.id.main_tab_fragment_2_item_row_textView);
+            subtTextView = itemView.findViewById(R.id.main_tab_fragment_2_item_row_subTextView);
+            imageView = itemView.findViewById(R.id.main_tab_fragment_2_item_row_imgView);
+        }
+
+        public void setId(int i) {
+            itemView.setId(i);
+        }
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+
+                String charString = constraint.toString();
+
+                if (charString.isEmpty()){
+                    list = list1;
+                }else{
+                    List<Main_TabFragment2_DataRecycle> filterList = new ArrayList<>();
+
+                    for (Main_TabFragment2_DataRecycle data : list1){
+                        // 타이틀 조회
+                        if (data.getTitle().toLowerCase().contains(charString)){
+                            filterList.add(data); }
+                        // 카테고리 조회
+                        if (data.getSubtitle().toLowerCase().contains(charString)){
+                            filterList.add(data); }
+                    }
+                    list = filterList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = list;
+
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                list = (List<Main_TabFragment2_DataRecycle>) results.values;
+                notifyDataSetChanged();
+            }
+        };
+
+    }
+}

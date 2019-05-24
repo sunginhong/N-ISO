@@ -19,6 +19,8 @@ import android.widget.FrameLayout;
 
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity_MainView extends AppCompatActivity {
 
@@ -77,11 +79,39 @@ public class MainActivity_MainView extends AppCompatActivity {
 
         for (int i = 0; i < arrayBtmButton.size(); i++) {
             final int finalI = i;
+
             arrayBtmButton.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     currentPageIndex = finalI;
                     mViewPager.setCurrentItem(currentPageIndex);
+
+                    switch (finalI) {
+                        case 0:
+                            Main_TabFragment1.main_tab_fragment_1_nestedScrollView.fullScroll(View.FOCUS_UP);
+                            Main_TabFragment1.main_tab_fragment_1_nestedScrollView.smoothScrollTo(0,0);
+                            /////
+                            new Timer().schedule(
+                                    new TimerTask(){
+                                        @Override
+                                        public void run(){
+                                            Main_TabFragment1.main_tab_fragment_1_nestedScrollView.fullScroll(View.FOCUS_UP);
+                                            Main_TabFragment1.main_tab_fragment_1_nestedScrollView.smoothScrollTo(0,0);
+                                        }
+                                    }, 100);
+                            break;
+                        case 1:
+
+                            break;
+                        case 2:
+
+                            break;
+                        case 3:
+
+                            break;
+                        default:
+                            break;
+                    }
                 }
             });
         }

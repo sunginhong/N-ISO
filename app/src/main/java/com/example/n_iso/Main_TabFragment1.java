@@ -87,8 +87,7 @@ public class Main_TabFragment1 extends Fragment {
 
     ViewPager main_tab_fragment_1_vp;
     RecyclerView main_tab_fragment_1_recycler;
-    NestedScrollView main_tab_fragment_1_nestedScrollView;
-//    Toolbar toolbar;
+    static NestedScrollView main_tab_fragment_1_nestedScrollView;
 
     private SearchView searchView = null;
     private SearchView.OnQueryTextListener queryTextListener;
@@ -110,32 +109,27 @@ public class Main_TabFragment1 extends Fragment {
 //        ProcessXmlTask xmlTask = new ProcessXmlTask();
 //        xmlTask.execute("https://rss.blog.naver.com/nvr_design.xml?rss=1.0");
 //        new FetchMetadataFromURL().execute();
-
         data_parse();
 
         layout = (LinearLayout) inflater.inflate(R.layout.main_tab_fragment_1, container, false);
 
-        main_tab_fragment_1_recycler = layout.findViewById(R.id.main_tab_fragment_1_recycler);
-        main_tab_fragment_1_recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        Main_TabFragment1_RecyclerAdapter = new Main_TabFragment1_RecyclerAdapter(getContext(),recyclelist);
-        main_tab_fragment_1_recycler.setAdapter(Main_TabFragment1_RecyclerAdapter);
-
         main_tab_fragment_1_nestedScrollView = layout.findViewById(R.id.main_tab_fragment_1_nestedScrollView);
         main_tab_fragment_1_nestedScrollView.setSmoothScrollingEnabled(true);
+        main_tab_fragment_1_nestedScrollView.fullScroll(View.FOCUS_UP);
+        main_tab_fragment_1_nestedScrollView.smoothScrollTo(0,0);
 
         return layout;
     }
 
     public void data_parse(){
-
         /// recycleView data Add
-        recyclelist.add(new Main_TabFragment1_DataRecycle("ui","a_윤무영","https://cdn.dribbble.com/users/4859/screenshots/6374407/online_doctor_consultation_4x.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
-        recyclelist.add(new Main_TabFragment1_DataRecycle("motion","c_이상민","https://cdn.dribbble.com/users/4859/screenshots/6381781/summer_is_comming_2x.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
-        recyclelist.add(new Main_TabFragment1_DataRecycle("logo","a_이정익","https://cdn.dribbble.com/users/4859/screenshots/4640959/dsx.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
-        recyclelist.add(new Main_TabFragment1_DataRecycle("motion","b_문경훈","https://cdn.dribbble.com/users/4859/screenshots/6381781/summer_is_comming_2x.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
-        recyclelist.add(new Main_TabFragment1_DataRecycle("ui","a_김학진","https://cdn.dribbble.com/users/4859/screenshots/6374407/online_doctor_consultation_4x.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
-        recyclelist.add(new Main_TabFragment1_DataRecycle("motion","b_이민형","https://cdn.dribbble.com/users/4859/screenshots/6381781/summer_is_comming_2x.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
-        recyclelist.add(new Main_TabFragment1_DataRecycle("logo","c_홍성인","https://cdn.dribbble.com/users/4859/screenshots/4640959/dsx.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
+//        recyclelist.add(new Main_TabFragment1_DataRecycle("ui","a_윤무영","https://cdn.dribbble.com/users/4859/screenshots/6374407/online_doctor_consultation_4x.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
+//        recyclelist.add(new Main_TabFragment1_DataRecycle("motion","c_이상민","https://cdn.dribbble.com/users/4859/screenshots/6381781/summer_is_comming_2x.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
+//        recyclelist.add(new Main_TabFragment1_DataRecycle("logo","a_이정익","https://cdn.dribbble.com/users/4859/screenshots/4640959/dsx.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
+//        recyclelist.add(new Main_TabFragment1_DataRecycle("motion","b_문경훈","https://cdn.dribbble.com/users/4859/screenshots/6381781/summer_is_comming_2x.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
+//        recyclelist.add(new Main_TabFragment1_DataRecycle("ui","a_김학진","https://cdn.dribbble.com/users/4859/screenshots/6374407/online_doctor_consultation_4x.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
+//        recyclelist.add(new Main_TabFragment1_DataRecycle("motion","b_이민형","https://cdn.dribbble.com/users/4859/screenshots/6381781/summer_is_comming_2x.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
+//        recyclelist.add(new Main_TabFragment1_DataRecycle("logo","c_홍성인","https://cdn.dribbble.com/users/4859/screenshots/4640959/dsx.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
 
         new Thread() {
             @Override
@@ -147,12 +141,27 @@ public class Main_TabFragment1 extends Fragment {
                             (getActivity()).runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    ///// recent View Adapter
+                                    int k = -1;
+                                    while(k < MainActivity_Splash.display-1) {
+                                        k = k + 1;
+//                                        Log.d("ssssssss", "sssss"+MainActivity_Splash.mainListCategory.get(k));
+                                        recyclelist.add(new Main_TabFragment1_DataRecycle(MainActivity_Splash.mainListCategory.get(k), MainActivity_Splash.mainListTitle.get(k), MainActivity_Splash.mainListSubTitle.get(k), MainActivity_Splash.mainListThumb.get(k)));
+                                    }
+                                    ///// 네이버 디자인 블로그 View Adapter
                                     int n = 1;
                                     while(n < MainActivity_Splash.display-1) {
                                         n = n + 1;
-                                        vplist.add(new Main_TabFragment1_DataVp(MainActivity_Splash.title[n-0], MainActivity_Splash.desc[n-1], MainActivity_Splash.link[n-0], MainActivity_Splash.thumbImage[n-0]));
+                                        vplist.add(new Main_TabFragment1_DataVp( MainActivity_Splash.title[n-0], MainActivity_Splash.desc[n-1], MainActivity_Splash.link[n-0], MainActivity_Splash.thumbImage[n-0]));
                                     }
 
+                                    ///// recent View
+                                    main_tab_fragment_1_recycler = layout.findViewById(R.id.main_tab_fragment_1_recycler);
+                                    main_tab_fragment_1_recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+                                    Main_TabFragment1_RecyclerAdapter = new Main_TabFragment1_RecyclerAdapter(getContext(),recyclelist);
+                                    main_tab_fragment_1_recycler.setAdapter(Main_TabFragment1_RecyclerAdapter);
+
+                                    ///// 네이버 디자인 블로그 View
                                     main_tab_fragment_1_vp = layout.findViewById(R.id.main_tab_fragment_1_vp);
                                     Main_TabFragment1_VpAdapter mAdapter = new Main_TabFragment1_VpAdapter(getContext(), vplist);
                                     main_tab_fragment_1_vp.setAdapter(mAdapter);
@@ -163,9 +172,7 @@ public class Main_TabFragment1 extends Fragment {
                         }
                     }).start();
                 } catch (Exception e) {
-
                 }
-
             }
         }.start();
     }
@@ -296,78 +303,6 @@ public class Main_TabFragment1 extends Fragment {
 
             }
         }.start();
-    }
-
-//    String urlAddress = "http://www.kma.go.kr/weather/main.jsp#1159068000";
-//    Handler handler = new Handler();
-
-    public void JsoupAsyncTask(final String searchObject) { // 검색어 = searchObject로 ;
-        final String this_url;
-
-        new Thread() {
-
-            @Override
-            public void run() {
-                final StringBuilder sb;//
-                try {
-
-                } catch (Exception e) {
-
-                }
-
-            }
-        }.start();
-    }
-
-    private class FetchMetadataFromURL extends AsyncTask<Void, Void, Void> {
-        String websiteTitle, websiteDescription, imgurl;
-        String URL;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            try {
-                Document document = Jsoup.connect(URL).get();
-                websiteTitle = document.title();
-
-                Elements metaElems = document.select("meta");
-                for (Element metaElem : metaElems) {
-                    String property = metaElem.attr("property");
-//                    Log.e("Property", "Property =" + property + " \n Value =" + metaElem.attr("content"));
-                }
-
-
-                websiteDescription = metaElems.attr("content");
-                Elements metaOgImage = document.select("meta[property=og:image]");
-
-                if (metaOgImage != null) {
-//                    System.out.println("aaaaaaaa"+document.outerHtml());
-//                    imgurl = metaOgImage.first().attr("content");
-//                    System.out.println("src :<<<------>>> " + ogImage);
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-//            System.out.println("sssssss"+imgurl);
-//            System.out.println("websiteTitle"+websiteTitle);
-//            text.setText("Title : " + websiteTitle + "\n\nImage Url :: " + imgurl);
-//
-//            //t2.setText(websiteDescription);
-//            Picasso.with(getApplicationContext()).load(imgurl).into(imgOgImage);
-
-        }
-
     }
 
 }
