@@ -48,10 +48,12 @@ public class MainActivity_Splash extends AppCompatActivity {
     static final String[] thumbImage = new String[display];
 
     static int mainList_n = 0;
+    static List<Integer> mainListSortIndex_Interaction = new ArrayList<Integer>();
     static List<String> mainListTitle = new ArrayList<>();
     static List<String> mainListSubTitle = new ArrayList<>();
     static List<String> mainListUrl = new ArrayList<>();
     static List<String> mainListThumb = new ArrayList<>();
+    static List<String> mainListCategoryList= new ArrayList<>();
     static List<String> mainListCategory = new ArrayList<>();
 
 
@@ -413,12 +415,19 @@ public class MainActivity_Splash extends AppCompatActivity {
                 Elements img = document.select("img");
                 Elements text = document.select("p");
                 Elements category = document.select("div[class=category]");
-                Log.d("sssssss", "sssss"+category.get(0).text());
 
+                String str = category.get(0).text();
+                String[] array = str.split(",");
+                //출력
+                mainListCategoryList.add(category.get(0).text());
+
+                for(int k = 0; k < array.length; k++) {
+                    if (array[k].equals(" Interaction") || array[k].equals(" motion") || array[k].equals(" Logo")){
+                        mainListCategory.add(array[k]);
+                    }
+                }
                 mainListThumb.add(img.get(1).attr("src"));
                 mainListSubTitle.add(text.get(0).text());
-                mainListCategory.add(category.text());
-
             } catch (IOException e) {
                 e.printStackTrace();
             }

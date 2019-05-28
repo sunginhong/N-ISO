@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,24 +30,19 @@ public class Main_TabFragment2 extends Fragment {
     private SearchView searchView = null;
     private SearchView.OnQueryTextListener queryTextListener;
 
-    public Main_TabFragment2()
-    {
+    public Main_TabFragment2() {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         data_parse();
-
         layout = (LinearLayout) inflater.inflate(R.layout.main_tab_fragment_2, container, false);
-
         return layout;
     }
 
@@ -61,12 +57,19 @@ public class Main_TabFragment2 extends Fragment {
                             (getActivity()).runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-
                                     ///// 네이버 디자인 블로그 View
                                     int n = -1;
                                     while(n < MainActivity_Splash.mainList_n-1) {
                                         n = n + 1;
-                                        recyclelist.add(new Main_TabFragment2_DataRecycle(MainActivity_Splash.mainListTitle.get(n), MainActivity_Splash.mainListSubTitle.get(n), MainActivity_Splash.mainListThumb.get(n), MainActivity_Splash.mainListUrl.get(n)));
+                                        String str = MainActivity_Splash.mainListCategoryList.get(n);
+                                        String[] array = str.split(",");
+
+                                        for(int k = 0; k < array.length; k++) {
+                                            if (array[k].equals(" Interaction")){
+                                                ///// Interaction
+                                                recyclelist.add(new Main_TabFragment2_DataRecycle(MainActivity_Splash.mainListTitle.get(n), MainActivity_Splash.mainListSubTitle.get(n), MainActivity_Splash.mainListThumb.get(n), MainActivity_Splash.mainListCategoryList.get(n), MainActivity_Splash.mainListUrl.get(n)));
+                                            }
+                                        }
                                     }
                                     main_tab_fragment_2_recycler = layout.findViewById(R.id.main_tab_fragment_2_recycler);
                                     main_tab_fragment_2_recycler.setLayoutManager(new LinearLayoutManager(getContext()));

@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity_MainView"
+            android:windowSoftInputMode="adjustNothing"
             android:configChanges="screenSize|orientation">
         </activity>
 

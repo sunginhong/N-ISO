@@ -96,15 +96,14 @@ public class Main_TabFragment1 extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        setHasOptionsMenu(true);
+    public void onCreate(Bundle savedInstanceState) {
+        setHasOptionsMenu(false);
         super.onCreate(savedInstanceState);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
 //        searchNaver("네이버 설계(디자인)");
 //        ProcessXmlTask xmlTask = new ProcessXmlTask();
 //        xmlTask.execute("https://rss.blog.naver.com/nvr_design.xml?rss=1.0");
@@ -122,15 +121,6 @@ public class Main_TabFragment1 extends Fragment {
     }
 
     public void data_parse(){
-        /// recycleView data Add
-//        recyclelist.add(new Main_TabFragment1_DataRecycle("ui","a_윤무영","https://cdn.dribbble.com/users/4859/screenshots/6374407/online_doctor_consultation_4x.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
-//        recyclelist.add(new Main_TabFragment1_DataRecycle("motion","c_이상민","https://cdn.dribbble.com/users/4859/screenshots/6381781/summer_is_comming_2x.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
-//        recyclelist.add(new Main_TabFragment1_DataRecycle("logo","a_이정익","https://cdn.dribbble.com/users/4859/screenshots/4640959/dsx.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
-//        recyclelist.add(new Main_TabFragment1_DataRecycle("motion","b_문경훈","https://cdn.dribbble.com/users/4859/screenshots/6381781/summer_is_comming_2x.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
-//        recyclelist.add(new Main_TabFragment1_DataRecycle("ui","a_김학진","https://cdn.dribbble.com/users/4859/screenshots/6374407/online_doctor_consultation_4x.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
-//        recyclelist.add(new Main_TabFragment1_DataRecycle("motion","b_이민형","https://cdn.dribbble.com/users/4859/screenshots/6381781/summer_is_comming_2x.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
-//        recyclelist.add(new Main_TabFragment1_DataRecycle("logo","c_홍성인","https://cdn.dribbble.com/users/4859/screenshots/4640959/dsx.png", "스마트에디터 ONE 개편에 맞추어 오픈된 브랜드 사이드에 적용된 브랜드 영상과 로고 모션과"));
-
         new Thread() {
             @Override
             public void run() {
@@ -145,8 +135,7 @@ public class Main_TabFragment1 extends Fragment {
                                     int k = -1;
                                     while(k < MainActivity_Splash.display-1) {
                                         k = k + 1;
-//                                        Log.d("ssssssss", "sssss"+MainActivity_Splash.mainListCategory.get(k));
-                                        recyclelist.add(new Main_TabFragment1_DataRecycle(MainActivity_Splash.mainListCategory.get(k), MainActivity_Splash.mainListTitle.get(k), MainActivity_Splash.mainListSubTitle.get(k), MainActivity_Splash.mainListThumb.get(k)));
+                                        recyclelist.add(new Main_TabFragment1_DataRecycle(MainActivity_Splash.mainListCategory.get(k), MainActivity_Splash.mainListTitle.get(k), MainActivity_Splash.mainListSubTitle.get(k), MainActivity_Splash.mainListThumb.get(k), MainActivity_Splash.mainListUrl.get(k)));
                                     }
                                     ///// 네이버 디자인 블로그 View Adapter
                                     int n = 1;

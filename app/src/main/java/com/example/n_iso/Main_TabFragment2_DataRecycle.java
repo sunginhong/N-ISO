@@ -5,12 +5,14 @@ public class Main_TabFragment2_DataRecycle {
     public String title;
     public String subtitle;
     public String image;
+    public String category;
     public String url;
 
-    public Main_TabFragment2_DataRecycle(String title, String subtitle, String image, String url) {
+    public Main_TabFragment2_DataRecycle(String title, String subtitle, String image, String category, String url) {
         this.title = title;
         this.subtitle = subtitle;
         this.image = image;
+        this.category = category;
         this.url = url;
     }
 
@@ -38,11 +40,15 @@ public class Main_TabFragment2_DataRecycle {
         this.image = image;
     }
 
-    public String getUrl() {
-        return url;
+    public String getCategory() {
+        return category;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setCategory(String category) {
+        this.category = category;
     }
+
+    public String getUrl() { return  url; }
+
+    public void setUrl(String url) { this.url = url; }
 }

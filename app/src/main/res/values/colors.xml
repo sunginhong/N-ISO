@@ -6,10 +6,16 @@
     <color name="bottom_section_color">#FFFFFF</color>
     <color name="bottom_bg_color">#2d2c2f</color>
     <color name="grey_1">#a3a3a3</color>
+    <color name="grey_2">#666666</color>
     <color name="main_bg">#1e1e1e</color>
     <color name="travel">#3fb4ff</color>
     <color name="lifestyle">#8851ff</color>
     <color name="food">#ef9533</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="gooeyview_bg_color">#222224</color>
+    <color name="centercircle_white"></color>
+    <color name="centercircle_green"></color>
+    <color name="circleColor">#75ca64</color>
+
 </resources>

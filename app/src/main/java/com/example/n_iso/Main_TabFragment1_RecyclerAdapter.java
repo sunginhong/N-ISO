@@ -3,6 +3,7 @@ package com.example.n_iso;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +47,21 @@ public class Main_TabFragment1_RecyclerAdapter extends RecyclerView.Adapter<Main
     public void onBindViewHolder(@NonNull MyHolder myHolder, int i) {
         myHolder.setId(i);
         myHolder.linearlayout.setId(i);
-        myHolder.categoryTextView.setText(list.get(i).getCategory());
+
+        String categoryStr = list.get(i).getCategory().trim();
+        String[] strArray = categoryStr.split(" ");
+        StringBuilder categoryStr_builder = new StringBuilder();
+        for (String s : strArray) {
+            String cap = s.substring(0, 1).toUpperCase() + s.substring(1);
+            categoryStr_builder.append(cap + " ");
+        }
+        myHolder.categoryTextView.setText(categoryStr_builder.toString());
+
+        Glide.with(context).clear(myHolder.imageView);
         Glide.with(context)
                 .load(list.get(i).getImage())
+                .centerCrop()
+                .skipMemoryCache(true)
                 .into(myHolder.imageView);
 
         myHolder.imageViewContain.setId(i);
@@ -67,8 +81,9 @@ public class Main_TabFragment1_RecyclerAdapter extends RecyclerView.Adapter<Main
             }
         }
         /// 카테고리 컬러
-        switch (list.get(i).getCategory()) {
-            case "ui":
+//        System.out.println(list.get(i).getCategory());
+        switch (list.get(i).getCategory().trim()) {
+            case "Interaction":
                 myHolder.categoryTextView.setTextColor(context.getResources().getColor(R.color.travel));
                 break;
             case "motion":
@@ -87,8 +102,11 @@ public class Main_TabFragment1_RecyclerAdapter extends RecyclerView.Adapter<Main
         return list.size();
     }
 
+    @Override
     public void onClick(View view) {
-
+        View view_d = view;
+        int selectIndex = view_d.getId();
+        Log.d("sssssss", "sss"+list.get(selectIndex).getUrl());
     }
 
     public static class MyHolder extends RecyclerView.ViewHolder{
@@ -153,4 +171,6 @@ public class Main_TabFragment1_RecyclerAdapter extends RecyclerView.Adapter<Main
         };
 
     }
+
+
 }

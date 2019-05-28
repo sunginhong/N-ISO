@@ -1,22 +1,25 @@
 package com.example.n_iso;
 
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.transition.ChangeBounds;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.Button;
 import android.widget.FrameLayout;
+import android.view.Display;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.graphics.Point;
 
+import com.bumptech.glide.Glide;
+import com.example.n_iso.Utils_Folder.Utils_Anim;
+import com.example.n_iso.Utils_Folder.Utils_Calc;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -27,9 +30,24 @@ public class MainActivity_MainView extends AppCompatActivity {
     private ViewPager mViewPager;
     Toolbar myToolbar;
 
+
     static int currentPageIndex = 0;
-    private int screenHeight = 0;
-    private int screenWidth = 0;
+    static int screenWidth;
+    static int screenHeight;
+
+    static RelativeLayout menuViewRl;
+    static View mainBgColor;
+    static View mainBottom_bgView;
+    static ImageButton mainBottomMenu_Icn0;
+    static RelativeLayout mainRvLayout;
+    static RelativeLayout mainBottomMenu_CenterRlView;
+
+    static ImageView mainBottomMenu_CenterView_IndexColor;
+    static ImageView mainBottomMenu_CenterView_White;
+    static RelativeLayout mainBottomMenu_CenterView_Icn;
+    static ImageView mainBottomMenu_CenterView_Icn_blackLine;
+    static ImageView mainBottomMenu_CenterView_Icn_whiteLine;
+
     private String URL_JSON = "http://rstudi0.cafe24.com/json/";
     private String URL_THUMB_IMG = "http://rstudi0.cafe24.com/json/img/";
     private String URL_LINK = "http://jjangik.com/";
@@ -43,15 +61,15 @@ public class MainActivity_MainView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_vp);
 
+        screeSizeCalc();
+//        mainBottom_bgView = (View) findViewById(R.id.mainBottom_bgView);
+
         ChangeBounds bounds = new ChangeBounds();
         bounds.setDuration(400);
         bounds.setInterpolator(new DecelerateInterpolator(1.5f));
         getWindow().setSharedElementEnterTransition(bounds);
 
         mViewPager = (ViewPager) findViewById(R.id.mainvp);
-
-        screenHeight = Util_Calc.getScreenSize(this).y;
-        screenWidth = Util_Calc.getScreenSize(this).x;
 
         mViewPager.setAdapter(new Main_PagerAdapter(getSupportFragmentManager()));
         mViewPager.setCurrentItem(0);
@@ -144,5 +162,37 @@ public class MainActivity_MainView extends AppCompatActivity {
         }
     }
 
+    @Override public void onLowMemory() {
+        super.onLowMemory();
+        Glide.get(this).clearMemory();
+    }
+    @Override public void onTrimMemory(int level) {
+        super.onTrimMemory(level); Glide.get(this).trimMemory(level);
+    }
+
+    private void screeSizeCalc(){
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        screenWidth = size.x;
+        screenHeight = size.y;
+
+        menuViewRl = (RelativeLayout) findViewById(R.id.menuViewRl);
+        mainBgColor = (View) findViewById(R.id.mainBgColor);
+        mainBottomMenu_CenterRlView = (RelativeLayout) findViewById(R.id.mainBottomMenu_CenterRlView);
+        mainBottomMenu_CenterView_IndexColor = (ImageView) findViewById(R.id.mainBottomMenu_CenterView_Index);
+        mainBottomMenu_CenterView_White = (ImageView) findViewById(R.id.mainBottomMenu_CenterView_White);
+        mainBottomMenu_CenterView_Icn = (RelativeLayout) findViewById(R.id.mainBottomMenu_CenterView_Icn);
+        mainBottomMenu_CenterView_Icn_blackLine = (ImageView) findViewById(R.id.mainBottomMenu_CenterView_Icn_blackLine);
+        mainBottomMenu_CenterView_Icn_whiteLine = (ImageView) findViewById(R.id.mainBottomMenu_CenterView_Icn_whiteLine);
+
+        mainBottomMenu_CenterRlView.bringToFront();
+        MainBottom_CircleView.mainBottomMenu_CenterCircle.bringToFront();
+
+        mainBgColor = (View) findViewById(R.id.mainBgColor);
+        mainBgColor.setBackgroundResource(R.color.gooeyview_bg_color);
+        menuViewRl.setAlpha(0);
+        MainBottom_GooeyView.gooeyview_canvas.setAlpha(0);
+    }
 
 }
