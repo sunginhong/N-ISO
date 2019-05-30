@@ -1,7 +1,9 @@
 package com.example.n_iso;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,8 +17,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideExtension;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestListener;
 import com.squareup.picasso.Picasso;
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
 
+import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +70,9 @@ public class Main_TabFragment1_RecyclerAdapter extends RecyclerView.Adapter<Main
                 .load(list.get(i).getImage())
                 .centerCrop()
                 .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(myHolder.imageView);
+
 
         myHolder.imageViewContain.setId(i);
         myHolder.titleTextView.setText(list.get(i).getTitle());

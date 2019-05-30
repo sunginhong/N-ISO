@@ -51,10 +51,16 @@ public class MainActivity_Splash extends AppCompatActivity {
     static List<Integer> mainListSortIndex_Interaction = new ArrayList<Integer>();
     static List<String> mainListTitle = new ArrayList<>();
     static List<String> mainListSubTitle = new ArrayList<>();
+    static List<String> mainListSynopTitle = new ArrayList<>();
     static List<String> mainListUrl = new ArrayList<>();
     static List<String> mainListThumb = new ArrayList<>();
     static List<String> mainListCategoryList= new ArrayList<>();
     static List<String> mainListCategory = new ArrayList<>();
+
+    static String aboutTitle = "";
+    static String aboutPtag_kor = "";
+    static String aboutPtag_eng = "";
+    static String aboutFooter = "";
 
 
     @Override
@@ -63,10 +69,11 @@ public class MainActivity_Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        new NetworkTask_Get_About_Parse("http://n-interaction.com/?page_id=8", null).execute();
+
         new NetworkTask_Get_Ninteraction_Parse("http://n-interaction.com", null, 0).execute();
         ProcessXmlTask xmlTask = new ProcessXmlTask();
         xmlTask.execute("https://rss.blog.naver.com/nvr_design.xml?rss=1.0");
-
     }
 
     private void splashEnd() {
@@ -428,6 +435,15 @@ public class MainActivity_Splash extends AppCompatActivity {
                 }
                 mainListThumb.add(img.get(1).attr("src"));
                 mainListSubTitle.add(text.get(0).text());
+
+
+                String text1 = text.get(2).toString().replace("<p>", "").replace("</p>", "");
+                String text2 = text.get(3).toString().replace("<p>", "").replace("</p>", "");
+                String lineSep = System.getProperty("line.separator");
+                String ptag_text = text1;
+                String ptag_text_F = ptag_text.replaceAll("<br>", lineSep);
+                mainListSynopTitle.add(ptag_text_F);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -453,6 +469,78 @@ public class MainActivity_Splash extends AppCompatActivity {
             super.onPostExecute(s);
 
         }
+    }
+
+
+    private class NetworkTask_Get_About_Parse extends AsyncTask<Void, Void, Void> {
+
+        private URL Url;
+        private String strUrl,strCookie,result,websiteTitle;
+
+        public NetworkTask_Get_About_Parse(String url, ContentValues values) {
+            strUrl = url;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try{
+                Url = new URL(strUrl);
+                HttpURLConnection conn = (HttpURLConnection) Url.openConnection();
+                conn.setRequestMethod("GET"); // get방식 통신
+                conn.setDoOutput(true);
+                conn.setDoInput(true);
+                conn.setUseCaches(false);
+                conn.setDefaultUseCaches(false);
+
+                strCookie = conn.getHeaderField("Set-Cookie");
+                InputStream is = conn.getInputStream();
+
+                StringBuilder builder = new StringBuilder();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is,"UTF-8"));
+                String line;
+
+                while ((line = reader.readLine()) != null) {
+                    builder.append(line+ "\n");
+                }
+
+                result = builder.toString();
+                /////
+                Document document = Jsoup.connect(strUrl).get();
+                Elements div = document.select("div");
+                Elements title = document.select("div[class=front-title]");
+                Elements ptag = document.select("p");
+                Elements footer = document.select("div[class=iso_footer]");
+                /////
+                String ptag_kor_data = "";
+                String text1 = ptag_kor_data = ptag.get(0).toString().replace("<p>", "").replace("</p>", "");
+                String text2 = ptag_kor_data = ptag.get(1).toString().replace("<p>", "").replace("</p>", "");
+                ptag_kor_data = text1+"\n" +text2;
+                String ptag_eng_data = ptag.get(2).toString().replace("<p>", "").replace("</p>", "");
+                String lineSep = System.getProperty("line.separator");
+
+                aboutTitle = title.text();
+                aboutPtag_kor = ptag_kor_data.replaceAll("<br>", lineSep);
+                aboutPtag_eng = ptag_eng_data.replaceAll("<br>", lineSep);
+                aboutFooter = footer.get(0).text();
+
+            }catch(MalformedURLException | ProtocolException exception) {
+                exception.printStackTrace();
+            }catch(IOException io){
+                io.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
+
     }
 
 

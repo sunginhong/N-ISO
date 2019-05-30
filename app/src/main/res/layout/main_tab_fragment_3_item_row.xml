@@ -7,72 +7,27 @@
     android:orientation="vertical"
     android:clipChildren="false">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:clipChildren="false"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clipChildren="false"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
-                android:layout_weight="4"
-                android:clipChildren="false"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/main_tab_fragment_3_item_row_textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:lineSpacingExtra="7sp"
-                    android:textColor="@color/white"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
-                    android:maxLines="2"
-                    android:singleLine="true"
-                    tools:text="We Went to Rome" />
-
-                <TextView
-                    android:id="@+id/main_tab_fragment_3_item_row_subTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:lineSpacingExtra="7sp"
-                    android:textColor="@color/grey_1"
-                    android:textSize="16sp"
-                    android:singleLine="true"
-                    tools:text="La Klippkroog" />
-
-                <TextView
-                    android:id="@+id/main_tab_fragment_3_item_row_category"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/grey_2"
-                    android:textSize="15sp"
-                    android:singleLine="true"
-                    tools:text="La Klippkroog" />
-            </LinearLayout>
-
+            android:clipChildren="false">
 
             <android.support.v7.widget.CardView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="320dp"
+                android:layout_height="180dp"
                 android:clipChildren="true"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="2dp"
                 android:gravity="center_vertical"
-                app:cardBackgroundColor="#0c000000">
+                app:cardBackgroundColor="#0c000000"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp">
 
                 <ImageView
                     android:id="@+id/main_tab_fragment_3_item_row_imgView"
@@ -83,15 +38,71 @@
                     app:srcCompat="@mipmap/ic_launcher" />
             </android.support.v7.widget.CardView>
 
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="150dp"
+            android:layout_weight="0"
+            android:background="@color/black_three"
+            android:clipChildren="false"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="13dp"
+            android:paddingBottom="20dp"
+            android:translationX="20dp">
+
+            <TextView
+                android:id="@+id/main_tab_fragment_3_item_row_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/noto_serif_bold"
+                android:lineSpacingExtra="7sp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:text="We Went to Rome" />
+
+            <TextView
+                android:id="@+id/main_tab_fragment_3_item_row_subTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/noto_sans"
+                android:lineSpacingExtra="7sp"
+                android:singleLine="true"
+                android:textColor="@color/grey_1"
+                android:textSize="16sp"
+                tools:text="La Klippkroog" />
+
+            <TextView
+                android:id="@+id/main_tab_fragment_3_item_row_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:fontFamily="@font/noto_sans"
+                android:singleLine="true"
+                android:textColor="@color/grey_2"
+                android:textSize="15sp"
+                tools:text="La Klippkroog" />
+
+            <TextView
+                android:id="@+id/main_tab_fragment_3_item_row_synopsis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans"
+                android:singleLine="true"
+                android:textColor="@color/grey_1"
+                android:textSize="15sp"
+                tools:text="La Klippkroog" />
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="21dp"
-            android:alpha="0.5"
-            android:background="#FFFFFF" />
-
-    </LinearLayout>
+    </FrameLayout>
 
 </RelativeLayout>

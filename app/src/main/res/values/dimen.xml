@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="mainTop_Margin">86dp</dimen>
     <dimen name="mainBottom_toolBar__Height">56dp</dimen>
     <dimen name="mainBottom_bottomBar__Height">56dp</dimen>
     <dimen name="mainBottom_bottomBar__Height_margin">-56dp</dimen>

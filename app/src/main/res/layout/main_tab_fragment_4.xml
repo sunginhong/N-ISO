@@ -1,17 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textSize="30dp"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        android:text="네번째 페이지"/>
+    <com.example.n_iso.Main_TabFragment4_NestedScrollingView
+        android:id="@+id/main_tab_fragment_4_nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:fillViewport="true"
+        android:scrollbars="none">
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical">
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/mainTop_Margin" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/noto_serif_bold"
+                    android:lineSpacingExtra="10sp"
+                    android:text="TREND REPORT"
+                    android:textColor="#ffffff"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </com.example.n_iso.Main_TabFragment4_NestedScrollingView>
+
+
+</LinearLayout>

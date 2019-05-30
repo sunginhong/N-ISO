@@ -17,5 +17,5 @@
     <color name="centercircle_white"></color>
     <color name="centercircle_green"></color>
     <color name="circleColor">#75ca64</color>
-
+    <color name="black_three">#141414</color>
 </resources>

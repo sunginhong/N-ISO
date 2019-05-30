@@ -1,6 +1,7 @@
 package com.example.n_iso;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -54,6 +55,7 @@ public class Main_TabFragment3_RecyclerAdapter extends RecyclerView.Adapter<Main
                 .into(myHolder.imageView);
 
         myHolder.categoryTextView.setText(list.get(i).getCategory());
+        myHolder.synopsisTextView.setText(list.get(i).getSynopsis());
     }
 
     @Override
@@ -65,7 +67,12 @@ public class Main_TabFragment3_RecyclerAdapter extends RecyclerView.Adapter<Main
     public void onClick(View view) {
         View view_d = view;
         int selectIndex = view_d.getId();
-        Log.d("sssssss", "sss"+list.get(selectIndex).getUrl());
+//        Log.d("sssssss", "sss"+list.get(selectIndex).getUrl());
+
+        Intent intent = new Intent(view.getContext(), Main_TabFragment2_DetailView.class);
+        intent.putExtra("URL" ,list.get(selectIndex).getUrl());
+        intent.putExtra("TITLE" , list.get(selectIndex).getTitle());
+        view.getContext().startActivity(intent);
     }
 
     public static class MyHolder extends RecyclerView.ViewHolder{
@@ -73,6 +80,7 @@ public class Main_TabFragment3_RecyclerAdapter extends RecyclerView.Adapter<Main
         TextView titleTextView;
         TextView subtTextView;
         TextView categoryTextView;
+        TextView synopsisTextView;
         ImageView imageView;
 
         public MyHolder(@NonNull View itemView) {
@@ -80,6 +88,7 @@ public class Main_TabFragment3_RecyclerAdapter extends RecyclerView.Adapter<Main
             titleTextView = itemView.findViewById(R.id.main_tab_fragment_3_item_row_textView);
             subtTextView = itemView.findViewById(R.id.main_tab_fragment_3_item_row_subTextView);
             categoryTextView = itemView.findViewById(R.id.main_tab_fragment_3_item_row_category);
+            synopsisTextView = itemView.findViewById(R.id.main_tab_fragment_3_item_row_synopsis);
             imageView = itemView.findViewById(R.id.main_tab_fragment_3_item_row_imgView);
         }
 

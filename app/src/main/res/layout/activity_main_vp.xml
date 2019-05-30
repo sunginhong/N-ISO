@@ -10,59 +10,78 @@
     android:clipChildren="false"
     android:background="@color/main_bg">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/main_top_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/mainBottom_toolBar__Height"
-            android:background="?attr/colorPrimary"
-            android:elevation="4dp"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="@style/AppTheme.SearchView"
-            app:contentInsetStartWithNavigation="0dp" />
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/mainvp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/mainBottom_bottomBar__Height">
-
-        </android.support.v4.view.ViewPager>
-
-    </LinearLayout>
-
-    <include
-        android:id="@+id/main_bottom_actionbar_include"
-        layout="@layout/main_bottom_actionbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/mainBottom_bottomBar__Height"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="@dimen/mainBottom_bottomBar__Height_margin" />
-
     <RelativeLayout
-        android:id="@+id/menuViewRl"
+        android:id="@+id/main_fl"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <View
-            android:id="@+id/mainBgColor"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#005FCE55" />
+            android:orientation="vertical"
+            android:clipChildren="false">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/main_top_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/mainBottom_toolBar__Height"
+                android:background="?attr/colorPrimary"
+                android:elevation="4dp"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="@style/AppTheme.SearchView"
+                app:contentInsetStartWithNavigation="0dp" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/mainvp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:layout_marginBottom="@dimen/mainBottom_bottomBar__Height">
+
+            </android.support.v4.view.ViewPager>
+
+        </android.support.constraint.ConstraintLayout>
+
+        <include
+            android:id="@+id/main_bottom_actionbar_include"
+            layout="@layout/main_bottom_actionbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/mainBottom_bottomBar__Height"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/mainBottom_bottomBar__Height_margin" />
+
+        <RelativeLayout
+            android:id="@+id/menuViewRl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:id="@+id/mainBgColor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#005FCE55" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
+
+
+
+    <include
+        android:id="@+id/aboutpage_layout"
+        layout="@layout/aboutpage_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+  />
 
     <com.example.n_iso.MainBottom_GooeyView
         android:id="@+id/gooeyview_canvas"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:id="@+id/mainBottomMenu_CenterRlView"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -72,18 +91,18 @@
         android:clipChildren="false">
 
         <ImageView
+            android:id="@+id/mainBottomMenu_CenterView_White"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="1"
+            android:background="@drawable/centercircle_white" />
+
+        <ImageView
             android:id="@+id/mainBottomMenu_CenterView_Index"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:alpha="1"
             android:background="@drawable/centercircle_index" />
-
-        <ImageView
-            android:id="@+id/mainBottomMenu_CenterView_White"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:alpha="0"
-            android:background="@drawable/centercircle_white" />
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/mainBottomMenu_CenterView_Icn"

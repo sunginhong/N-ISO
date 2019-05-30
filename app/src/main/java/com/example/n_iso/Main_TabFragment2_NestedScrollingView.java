@@ -6,9 +6,21 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.example.n_iso.Utils_Folder.Utils_Calc;
+import android.os.Handler;
+
+
 public class Main_TabFragment2_NestedScrollingView extends NestedScrollView {
     private int mState = RecyclerView.SCROLL_STATE_IDLE;
     static int ScrollY = 0;
+
+    private int HIDE_THRESHOLD = 20;
+    private int scrolledDistance = 0;
+    private int scrolledDistance_header = 0;
+    private boolean appbarVisible = false;
+    private String scrollDirection = "none";
+    private Handler mHandler;
+    private Runnable mRunnable;
 
     public interface NestedScrollViewScrollStateListener {
         void onNestedScrollViewStateChanged(int state);
@@ -72,7 +84,33 @@ public class Main_TabFragment2_NestedScrollingView extends NestedScrollView {
         ScrollY = scrollY;
         super.onScrollChanged(scrollX, scrollY, oldScrollX, oldScrollY);
 //        System.out.println("SSSSS"+scrollY);
+        scrolledDistance = scrollY;
 
+        super.onScrollChanged(scrollX, scrollY, oldScrollX, oldScrollY);
+//        System.out.println("SSSSS"+scrollY);
+        scrolledDistance = scrollY;
+        if ((scrollY > oldScrollY) && (scrollY - oldScrollY) > 10) { scrollDirection = "UP"; }
+        else if((scrollY < oldScrollY) && (oldScrollY - scrollY) > 10) { scrollDirection = "DOWN"; }
+
+        if((!appbarVisible && scrollY>0) || (appbarVisible && scrollY<0)) {
+            scrolledDistance += scrollY;
+        }
+
+//        System.out.println(MainActivity_MainView.myToolbar);
+//        if (scrollDirection == "DOWN" && scrolledDistance < HIDE_THRESHOLD && appbarVisible) {
+//            ScrollHederAnim.HeaderHide(MainActivity_MainView.myToolbar, -MainActivity_MainView.myToolbarHeight, 0, 300);
+//            appbarVisible = false;
+//            scrolledDistance = 0;
+//        } else if (scrollDirection == "UP" && scrolledDistance > HIDE_THRESHOLD && !appbarVisible) {
+//            ScrollHederAnim.HeaderShow(MainActivity_MainView.myToolbar, 0, -MainActivity_MainView.myToolbarHeight, 300);
+//            appbarVisible = true;
+//            scrolledDistance = 0;
+//        }
+//        if (scrollDirection == "DOWN" && scrolledDistance > HIDE_THRESHOLD && appbarVisible){
+//            ScrollHederAnim.HeaderHide(MainActivity_MainView.myToolbar, -MainActivity_MainView.myToolbarHeight, 0, 300);
+//            appbarVisible = false;
+//            scrolledDistance = 0;
+//        }
     }
 
 }

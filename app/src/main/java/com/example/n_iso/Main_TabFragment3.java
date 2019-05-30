@@ -67,7 +67,7 @@ public class Main_TabFragment3 extends Fragment {
                                         for(int k = 0; k < array.length; k++) {
                                             if (array[k].equals(" motion")){
                                                 ///// Motion
-                                                recyclelist.add(new Main_TabFragment3_DataRecycle(MainActivity_Splash.mainListTitle.get(n), MainActivity_Splash.mainListSubTitle.get(n), MainActivity_Splash.mainListThumb.get(n), MainActivity_Splash.mainListCategoryList.get(n), MainActivity_Splash.mainListUrl.get(n)));
+                                                recyclelist.add(new Main_TabFragment3_DataRecycle(MainActivity_Splash.mainListTitle.get(n), MainActivity_Splash.mainListSubTitle.get(n), MainActivity_Splash.mainListThumb.get(n), MainActivity_Splash.mainListCategoryList.get(n), MainActivity_Splash.mainListSynopTitle.get(n), MainActivity_Splash.mainListUrl.get(n)));
                                             }
                                         }
                                     }

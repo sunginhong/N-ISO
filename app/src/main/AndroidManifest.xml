@@ -27,6 +27,22 @@
             android:configChanges="screenSize|orientation">
         </activity>
 
+        <activity android:name=".Main_TabFragment2_DetailView"
+            android:windowSoftInputMode="adjustNothing"
+            android:configChanges="screenSize|orientation">
+        </activity>
+
+        <activity android:name=".Main_TabFragment3_DetailView"
+            android:windowSoftInputMode="adjustNothing"
+            android:configChanges="screenSize|orientation">
+        </activity>
+
+        <activity android:name=".Main_TabFragment_DetailView_Link"
+            android:windowSoftInputMode="adjustNothing"
+            android:configChanges="screenSize|orientation">
+        </activity>
+
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

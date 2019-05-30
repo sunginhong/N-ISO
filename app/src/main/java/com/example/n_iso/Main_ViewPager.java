@@ -1,6 +1,7 @@
 package com.example.n_iso;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -53,6 +54,43 @@ public class Main_ViewPager implements ViewPager.OnPageChangeListener, ViewPager
     @Override
     public void onPageSelected(final int position) {
         MainActivity_MainView.currentPageIndex = position;
+        Handler mHandler;
+        Runnable mRunnable;
+
+        mRunnable = new Runnable() {
+            @Override
+            public void run() { MainActivity_MainView.myToolbar.setY(-MainActivity_MainView.myToolbarHeight); }
+        };
+
+
+        switch (position) {
+            case 0:
+                if (MainActivity_MainView.myToolbar.getY() == 0){
+                    ScrollHederAnim.HeaderShow(MainActivity_MainView.myToolbar, 0, -MainActivity_MainView.myToolbarHeight, 400);
+                    mHandler = new Handler();
+                    mHandler.postDelayed(mRunnable, 400);
+                }
+                break;
+            case 1:
+                if (MainActivity_MainView.myToolbar.getY() == -MainActivity_MainView.myToolbarHeight){
+                    ScrollHederAnim.HeaderShow(MainActivity_MainView.myToolbar, -MainActivity_MainView.myToolbarHeight, 0, 400);
+                    MainActivity_MainView.myToolbar.setY(0);
+                }
+                break;
+            case 2:
+                if (MainActivity_MainView.myToolbar.getY() == -MainActivity_MainView.myToolbarHeight){
+                    ScrollHederAnim.HeaderShow(MainActivity_MainView.myToolbar, -MainActivity_MainView.myToolbarHeight, 0, 400);
+                    MainActivity_MainView.myToolbar.setY(0);
+                }
+                break;
+            case 3:
+                if (MainActivity_MainView.myToolbar.getY() == -MainActivity_MainView.myToolbarHeight){
+                    ScrollHederAnim.HeaderShow(MainActivity_MainView.myToolbar, -MainActivity_MainView.myToolbarHeight, 0, 400);
+                    MainActivity_MainView.myToolbar.setY(0);
+                }
+                break;
+        }
+
     }
 
 

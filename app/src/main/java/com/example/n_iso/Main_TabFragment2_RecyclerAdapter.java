@@ -1,6 +1,7 @@
 package com.example.n_iso;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,14 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +53,7 @@ public class Main_TabFragment2_RecyclerAdapter extends RecyclerView.Adapter<Main
                 .load(list.get(i).getImage())
                 .centerCrop()
                 .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(myHolder.imageView);
 
         myHolder.categoryTextView.setText(list.get(i).getCategory());
@@ -69,7 +68,12 @@ public class Main_TabFragment2_RecyclerAdapter extends RecyclerView.Adapter<Main
     public void onClick(View view) {
         View view_d = view;
         int selectIndex = view_d.getId();
-        Log.d("sssssss"+selectIndex, "sss"+list.get(selectIndex).getUrl());
+//        Log.d("sssssss"+selectIndex, "sss"+list.get(selectIndex).getUrl());
+
+        Intent intent = new Intent(view.getContext(), Main_TabFragment2_DetailView.class);
+        intent.putExtra("URL" ,list.get(selectIndex).getUrl());
+        intent.putExtra("TITLE" , list.get(selectIndex).getTitle());
+        view.getContext().startActivity(intent);
     }
 
     public static class MyHolder extends RecyclerView.ViewHolder{

@@ -132,7 +132,7 @@ public class MainBottom_GooeyView extends View {
         //calc 계산_알파
         calcRateN_ALPHA_RATE = 1;
 //        Log.d("sssssssssss"+circle.getY(), "sssssss"+circleSetOriginY);
-        float calcRateN_alpha = Utils_Calc.ModulateCalc(circle.getY(), circleSetOriginY-circleWidth/2, MainActivity_MainView.screenHeight/2 - MainBottom_GooeyView.circleWidth, 0, calcRateN_ALPHA_RATE);
+        float calcRateN_alpha = Utils_Calc.ModulateCalc(circle.getY(), circleSetOriginY-circleWidth/2, MainActivity_MainView.screenHeight/1.5f - MainBottom_GooeyView.circleWidth, 0, calcRateN_ALPHA_RATE);
         String str_calcRate_alpha = String.format("%.2f", calcRateN_alpha);
         float_calcRate_alpha_in = Float.parseFloat(str_calcRate_alpha);
         if (float_calcRate_alpha_in <= 0){ float_calcRate_alpha_in = 0; }
@@ -140,7 +140,7 @@ public class MainBottom_GooeyView extends View {
 
 //        float_calcRate_alpha_out
         calcRateN_ALPHA_RATE2 = 1;
-        float calcRateN_alpha2 = Utils_Calc.ModulateCalc(circle.getY(), circleSetOriginY-circleWidth/2, MainActivity_MainView.screenHeight/2 - MainBottom_GooeyView.circleWidth, calcRateN_ALPHA_RATE2, 0);
+        float calcRateN_alpha2 = Utils_Calc.ModulateCalc(circle.getY(), circleSetOriginY-circleWidth/2, MainActivity_MainView.screenHeight/1.5f - MainBottom_GooeyView.circleWidth, calcRateN_ALPHA_RATE2, 0);
         String str_calcRate_alpha2 = String.format("%.2f", calcRateN_alpha2);
         float_calcRate_alpha_out = Float.parseFloat(str_calcRate_alpha2);
         if (float_calcRate_alpha_out <= 0){ float_calcRate_alpha_out = 0; }

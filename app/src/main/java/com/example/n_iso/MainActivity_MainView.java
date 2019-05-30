@@ -1,5 +1,8 @@
 package com.example.n_iso;
 
+import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -16,25 +19,27 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.graphics.Point;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.n_iso.Utils_Folder.Utils_Anim;
 import com.example.n_iso.Utils_Folder.Utils_Calc;
 
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity_MainView extends AppCompatActivity {
+public class MainActivity_MainView extends AppCompatActivity  {
 
     private ViewPager mViewPager;
-    Toolbar myToolbar;
-
+    static Toolbar myToolbar;
 
     static int currentPageIndex = 0;
+    static int myToolbarHeight = 0;
     static int screenWidth;
     static int screenHeight;
 
+    static RelativeLayout main_fl;
     static RelativeLayout menuViewRl;
     static View mainBgColor;
     static View mainBottom_bgView;
@@ -48,9 +53,15 @@ public class MainActivity_MainView extends AppCompatActivity {
     static ImageView mainBottomMenu_CenterView_Icn_blackLine;
     static ImageView mainBottomMenu_CenterView_Icn_whiteLine;
 
-    private String URL_JSON = "http://rstudi0.cafe24.com/json/";
-    private String URL_THUMB_IMG = "http://rstudi0.cafe24.com/json/img/";
-    private String URL_LINK = "http://jjangik.com/";
+    static View aboutView_dv;
+    static FrameLayout aboutView_fl;
+    static MyVideoView aboutView_vv;
+    static ImageButton mPlayButton;
+
+    static ScrollView aboutView_sv;
+    static TextView about_title;
+    static TextView about_ptag;
+    static TextView about_footer;
 
     final ArrayList<FrameLayout> arrayBtmButton = new ArrayList<FrameLayout>();
 
@@ -61,6 +72,8 @@ public class MainActivity_MainView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_vp);
 
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         screeSizeCalc();
 //        mainBottom_bgView = (View) findViewById(R.id.mainBottom_bgView);
 
@@ -69,6 +82,7 @@ public class MainActivity_MainView extends AppCompatActivity {
         bounds.setInterpolator(new DecelerateInterpolator(1.5f));
         getWindow().setSharedElementEnterTransition(bounds);
 
+        main_fl = (RelativeLayout) findViewById(R.id.main_fl);
         mViewPager = (ViewPager) findViewById(R.id.mainvp);
 
         mViewPager.setAdapter(new Main_PagerAdapter(getSupportFragmentManager()));
@@ -81,7 +95,63 @@ public class MainActivity_MainView extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
+        myToolbarHeight = Utils_Calc.dpToPx(56);
+        ScrollHederAnim.HeaderShow(myToolbar, 0, -myToolbarHeight, 0);
+        myToolbar.setY(-myToolbarHeight);
+
+        aboutView_fl = (FrameLayout) findViewById(R.id.aboutView_fl);
+        aboutView_fl.setX(screenWidth);
+        aboutView_dv = (View) findViewById(R.id.aboutView_dv);
+        aboutView_vv = (MyVideoView) findViewById(R.id.aboutView_vv);
+//        MediaController controller = new MediaController(this);
+//        aboutView_vv.setMediaController(controller);
+        aboutView_vv.requestFocus();
+
+//        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(screenHeight, screenWidth);
+//        aboutView_vv.setLayoutParams(lp);
+
+        aboutView_vv.setVideoURI(Uri.parse("http://n-interaction.com/appData/reel.mp4"));
+        playVideo();
+        stopVideo();
+
+//        playVideo();
+//        aboutView_vv.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+//            // 동영상 재생준비가 완료된후 호출되는 메서드
+//            @Override
+//            public void onPrepared(MediaPlayer mp) {
+//                stopVideo();
+//            }
+//        });
+
+        // 동영상 재생이 완료된걸 알수있는 리스너
+        aboutView_vv.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            // 동영상 재생이 완료된후 호출되는 메서드
+            public void onCompletion(MediaPlayer player) {
+                playVideo();
+            }
+        });
+
         init_btn();
+
+        /////
+        aboutView_sv = (ScrollView) findViewById(R.id.aboutView_sv);
+        about_title = (TextView) findViewById(R.id.about_title);
+        about_ptag = (TextView) findViewById(R.id.about_ptag);
+        about_footer = (TextView) findViewById(R.id.about_footer);
+
+        about_title.setText(MainActivity_Splash.aboutTitle);
+        about_ptag.setText(MainActivity_Splash.aboutPtag_kor);
+        about_footer.setText(MainActivity_Splash.aboutFooter);
+    }
+
+    static void playVideo() {
+        aboutView_vv.seekTo(0);
+        aboutView_vv.start();
+    }
+
+    static void stopVideo() {
+        aboutView_vv.pause();
+//        aboutView_vv.stopPlayback();
     }
 
     private void init_btn() {
@@ -119,13 +189,10 @@ public class MainActivity_MainView extends AppCompatActivity {
                                     }, 100);
                             break;
                         case 1:
-
                             break;
                         case 2:
-
                             break;
                         case 3:
-
                             break;
                         default:
                             break;
@@ -150,15 +217,11 @@ public class MainActivity_MainView extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 // User chose the "Settings" item, show the app settings UI...
-
                 return true;
-
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
-
                 return super.onOptionsItemSelected(item);
-
         }
     }
 
@@ -187,12 +250,16 @@ public class MainActivity_MainView extends AppCompatActivity {
         mainBottomMenu_CenterView_Icn_whiteLine = (ImageView) findViewById(R.id.mainBottomMenu_CenterView_Icn_whiteLine);
 
         mainBottomMenu_CenterRlView.bringToFront();
-        MainBottom_CircleView.mainBottomMenu_CenterCircle.bringToFront();
 
         mainBgColor = (View) findViewById(R.id.mainBgColor);
         mainBgColor.setBackgroundResource(R.color.gooeyview_bg_color);
         menuViewRl.setAlpha(0);
         MainBottom_GooeyView.gooeyview_canvas.setAlpha(0);
+
+        MainBottom_CircleView.mainBottomMenu_CenterCircle.bringToFront();
     }
+
+
+
 
 }
