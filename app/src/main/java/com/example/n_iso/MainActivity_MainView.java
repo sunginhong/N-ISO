@@ -110,7 +110,10 @@ public class MainActivity_MainView extends AppCompatActivity  {
 //        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(screenHeight, screenWidth);
 //        aboutView_vv.setLayoutParams(lp);
 
-        aboutView_vv.setVideoURI(Uri.parse("http://n-interaction.com/appData/reel.mp4"));
+        Uri aboutVideo = Uri.parse("android.resource://" + getPackageName()+ "/"+R.raw.reel);
+        aboutView_vv.setVideoURI(aboutVideo);
+
+//        aboutView_vv.setVideoURI(Uri.parse("http://n-interaction.com/appData/reel.mp4"));
         playVideo();
         stopVideo();
 
