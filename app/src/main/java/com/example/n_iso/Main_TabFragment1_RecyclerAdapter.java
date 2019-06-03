@@ -1,14 +1,20 @@
 package com.example.n_iso;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.FrameLayout;
@@ -27,6 +33,14 @@ import com.bumptech.glide.module.AppGlideModule;
 import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.Object;
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.view.ContextThemeWrapper;
+import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
+
 
 public class Main_TabFragment1_RecyclerAdapter extends RecyclerView.Adapter<Main_TabFragment1_RecyclerAdapter.MyHolder>  implements Filterable ,View.OnClickListener {
 
@@ -116,7 +130,24 @@ public class Main_TabFragment1_RecyclerAdapter extends RecyclerView.Adapter<Main
     public void onClick(View view) {
         View view_d = view;
         int selectIndex = view_d.getId();
-        Log.d("sssssss", "sss"+list.get(selectIndex).getUrl());
+        switch (list.get(selectIndex).getCategory().trim()){
+            case "Interaction":
+                Intent intent_interaction = new Intent(view.getContext(), Main_TabFragment2_DetailView.class);
+                intent_interaction.putExtra("URL" ,list.get(selectIndex).getUrl());
+                intent_interaction.putExtra("TITLE" , list.get(selectIndex).getTitle());
+                view.getContext().startActivity(intent_interaction);
+                break;
+            case "motion":
+                Intent intent_motion = new Intent(view.getContext(), Main_TabFragment3_DetailView.class);
+                intent_motion.putExtra("URL" , list.get(selectIndex).getUrl());
+                intent_motion.putExtra("TITLE" , list.get(selectIndex).getTitle());
+                view.getContext().startActivity(intent_motion);
+                break;
+            default:
+                break;
+        }
+
+        ((Activity) context).overridePendingTransition(R.anim.activity_slide_in_100p_forward, R.anim.activity_slide_out_50p_forward);
     }
 
     public static class MyHolder extends RecyclerView.ViewHolder{

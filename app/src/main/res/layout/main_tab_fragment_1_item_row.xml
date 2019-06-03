@@ -80,11 +80,11 @@
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/noto_serif_bold"
                     android:lineSpacingExtra="10sp"
-                    android:maxLines="2"
                     android:textAllCaps="false"
                     android:textColor="#ffffff"
                     android:textSize="22sp"
                     android:singleLine="true"
+                    android:maxLines="1"
                     tools:text="beauté de l’espace Dia:Beacon" />
 
                 <TextView
@@ -93,10 +93,10 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_sans"
                     android:lineSpacingExtra="7sp"
-                    android:maxLines="2"
                     android:textColor="@color/grey_1"
                     android:textSize="16sp"
                     android:singleLine="true"
+                    android:maxLines="1"
                     tools:text="Petite ville Beacon près de rivière Hudson, en dehors des villes de N..." />
 
             </LinearLayout>

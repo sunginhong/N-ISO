@@ -39,6 +39,7 @@
             android:fontFamily="@font/noto_serif_bold"
             android:lineHeight="38sp"
             android:lineSpacingExtra="12sp"
+            android:singleLine="true"
             android:maxLines="1"
             android:ellipsize="end"
             android:shadowColor="#33000000"

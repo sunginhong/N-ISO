@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="footer_Height">100dp</dimen>
     <dimen name="mainTop_Margin">86dp</dimen>
     <dimen name="mainBottom_toolBar__Height">56dp</dimen>
     <dimen name="mainBottom_bottomBar__Height">56dp</dimen>
     <dimen name="mainBottom_bottomBar__Height_margin">-56dp</dimen>
     <dimen name="main_card_image_margin_left">19dp</dimen>
+    <dimen name="main_bottom_text_size">11sp</dimen>
+    <dimen name="main_bottom_padding_size">10dp</dimen>
+    <dimen name="main_bottom_circle_size">6dp</dimen>
+    <dimen name="main_bottom_maincircle_width">50dp</dimen>
 </resources>

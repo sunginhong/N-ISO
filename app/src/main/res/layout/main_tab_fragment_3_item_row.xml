@@ -64,6 +64,7 @@
                 android:fontFamily="@font/noto_serif_bold"
                 android:lineSpacingExtra="7sp"
                 android:singleLine="true"
+                android:maxLines="1"
                 android:textColor="@color/white"
                 android:textSize="22sp"
                 android:textStyle="bold"
@@ -77,6 +78,7 @@
                 android:fontFamily="@font/noto_sans"
                 android:lineSpacingExtra="7sp"
                 android:singleLine="true"
+                android:maxLines="1"
                 android:textColor="@color/grey_1"
                 android:textSize="16sp"
                 tools:text="La Klippkroog" />
@@ -88,6 +90,7 @@
                 android:layout_marginBottom="12dp"
                 android:fontFamily="@font/noto_sans"
                 android:singleLine="true"
+                android:maxLines="1"
                 android:textColor="@color/grey_2"
                 android:textSize="15sp"
                 tools:text="La Klippkroog" />
@@ -98,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans"
                 android:singleLine="true"
+                android:maxLines="1"
                 android:textColor="@color/grey_1"
                 android:textSize="15sp"
                 tools:text="La Klippkroog" />

@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
@@ -29,6 +30,8 @@ public class Main_TabFragment2 extends Fragment {
 
     private SearchView searchView = null;
     private SearchView.OnQueryTextListener queryTextListener;
+
+    static FrameLayout frag2_detail_fl;
 
     public Main_TabFragment2() {
     }

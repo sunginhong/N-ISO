@@ -7,6 +7,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
@@ -45,6 +46,27 @@ public class Utils_Anim {
         anim.setInterpolator(new DecelerateInterpolator((float) 1.5));
         anim.setDuration(duration);
         anim.start();
+    }
+
+    public static void SclaeAnim(View view, float startScaleX, float endScaleX, float startScaleY,float endScaleY, float originX, float originY, int duration) {
+        ScaleAnimation anim = new ScaleAnimation( startScaleX, endScaleX, startScaleY, endScaleY, Animation.RELATIVE_TO_SELF, originX, Animation.RELATIVE_TO_SELF, originY  );
+        anim.setFillAfter(true);
+        anim.setInterpolator(new DecelerateInterpolator((float) 1.5));
+        anim.setDuration(duration);
+        view.startAnimation(anim);
+    }
+
+    public static void SclaeAlphaAnim(View view, float startScaleX, float endScaleX, float startScaleY,float endScaleY, float originX, float originY, float startAlpha, float endAlpha, int duration) {
+        ScaleAnimation anim1 = new ScaleAnimation( startScaleX, endScaleX, startScaleY, endScaleY, Animation.RELATIVE_TO_SELF, originX, Animation.RELATIVE_TO_SELF, originY  );
+        Animation anim2 = new AlphaAnimation( startAlpha, endAlpha );
+
+        AnimationSet setAnim = new AnimationSet(true);
+        setAnim.setFillAfter(true);
+        setAnim.setInterpolator(new DecelerateInterpolator((float) 1.5));
+        setAnim.setDuration(duration);
+        setAnim.addAnimation(anim1);
+        setAnim.addAnimation(anim2);
+        view.setAnimation(setAnim);
     }
 
     public static void AlphaAnim(View view, float startAlpha, float endAlpha, int duration) {

@@ -1,10 +1,13 @@
 package com.example.n_iso;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.content.ContentValues;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.NestedScrollView;
 
@@ -88,6 +91,7 @@ public class Main_TabFragment1 extends Fragment {
     ViewPager main_tab_fragment_1_vp;
     RecyclerView main_tab_fragment_1_recycler;
     static NestedScrollView main_tab_fragment_1_nestedScrollView;
+    public static  LinearLayout main_tab_fragment_1_ll;
 
     private SearchView searchView = null;
     private SearchView.OnQueryTextListener queryTextListener;
@@ -108,10 +112,11 @@ public class Main_TabFragment1 extends Fragment {
 //        ProcessXmlTask xmlTask = new ProcessXmlTask();
 //        xmlTask.execute("https://rss.blog.naver.com/nvr_design.xml?rss=1.0");
 //        new FetchMetadataFromURL().execute();
+
         data_parse();
 
         layout = (LinearLayout) inflater.inflate(R.layout.main_tab_fragment_1, container, false);
-
+        main_tab_fragment_1_ll = layout.findViewById(R.id.main_tab_fragment_1_ll);
         main_tab_fragment_1_nestedScrollView = layout.findViewById(R.id.main_tab_fragment_1_nestedScrollView);
         main_tab_fragment_1_nestedScrollView.setSmoothScrollingEnabled(true);
         main_tab_fragment_1_nestedScrollView.fullScroll(View.FOCUS_UP);
@@ -137,6 +142,7 @@ public class Main_TabFragment1 extends Fragment {
                                         k = k + 1;
                                         recyclelist.add(new Main_TabFragment1_DataRecycle(MainActivity_Splash.mainListCategory.get(k), MainActivity_Splash.mainListTitle.get(k), MainActivity_Splash.mainListSubTitle.get(k), MainActivity_Splash.mainListThumb.get(k), MainActivity_Splash.mainListUrl.get(k)));
                                     }
+
                                     ///// 네이버 디자인 블로그 View Adapter
                                     int n = 1;
                                     while(n < MainActivity_Splash.display-1) {

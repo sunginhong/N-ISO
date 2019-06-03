@@ -2,13 +2,14 @@ package com.example.n_iso;
 
 import android.content.Intent;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
@@ -26,12 +27,14 @@ public class Main_TabFragment2_DetailView extends AppCompatActivity implements V
     private int scrolledDistance = 0;
     private boolean appbarVisible = false;
     private String scrollDirection = "none";
+    static FrameLayout frag2_detail_fl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_tab_fragment_2_detailview);
+        frag2_detail_fl = (FrameLayout)findViewById(R.id.frag2_detail_fl);
 
         frag2_detail_backbtn = (FrameLayout)findViewById(R.id.frag2_detail_backbtn);
         frag2_detail_backbtn.setOnClickListener(this);
@@ -39,13 +42,24 @@ public class Main_TabFragment2_DetailView extends AppCompatActivity implements V
         frag2_detail_appbar = (AppBarLayout)findViewById(R.id.frag2_detail_appbar);
 
         Intent intent = getIntent();
-        String url = intent.getStringExtra("URL");
+        final String url = intent.getStringExtra("URL");
         final String title = intent.getStringExtra("TITLE");
 
         frag2_detailWv = (WebView)findViewById(R.id.frag2_detailWv);
-        frag2_detailWv.loadUrl(url);
         frag2_detailWv.setWebViewClient(new Main_TabFragment2_DetailView.WebViewClientClass());
         frag2_detailWv.setWebChromeClient(new FullscreenableChromeClient(this));
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                // Code for WebView goes here
+//                frag2_detailWv.clearCache(true);
+//                frag2_detailWv.clearHistory();
+//                clearCookies(context);
+//                frag2_detailWv.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+                frag2_detailWv.loadUrl(url);
+            }
+        });
 
         frag2_detail_ttv = (TextView)findViewById(R.id.frag2_detail_ttv);
         frag2_detail_ttv.setText(title);
@@ -93,18 +107,22 @@ public class Main_TabFragment2_DetailView extends AppCompatActivity implements V
         }
     }
 
-    private void settingWebview(WebView webView){
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(false);
-        webView.getSettings().setLoadsImagesAutomatically(true);
-        webView.getSettings().setUseWideViewPort(true);
-        webView.getSettings().setSupportZoom(false);
-        webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
-        webView.getSettings().setAppCacheEnabled(false);
-        webView.getSettings().setDomStorageEnabled(true);
-        webView.getSettings().setAllowFileAccess(true);
-        webView.setWebChromeClient(new WebChromeClient());
-        webView.getSettings().setUserAgentString("app");
+    @SuppressWarnings("deprecation")
+    public static void clearCookies(Context context)
+    {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            CookieManager.getInstance().removeAllCookies(null);
+            CookieManager.getInstance().flush();
+        } else
+        {
+            CookieSyncManager cookieSyncMngr=CookieSyncManager.createInstance(context);
+            cookieSyncMngr.startSync();
+            CookieManager cookieManager=CookieManager.getInstance();
+            cookieManager.removeAllCookie();
+            cookieManager.removeSessionCookie();
+            cookieSyncMngr.stopSync();
+            cookieSyncMngr.sync();
+        }
     }
 
     @Override
@@ -115,6 +133,7 @@ public class Main_TabFragment2_DetailView extends AppCompatActivity implements V
     @Override
     public void onBackPressed() {
         ActivityCompat.finishAfterTransition(this);
+        outAnim();
     }
 
     @Override
@@ -123,8 +142,13 @@ public class Main_TabFragment2_DetailView extends AppCompatActivity implements V
 //        finish();
     }
 
+    private void outAnim(){
+        this.overridePendingTransition(R.anim.activity_slide_in_100p_backward, R.anim.activity_slide_out_50p_backward);
+    }
+
     @Override
     public void onClick(View view) {
         ActivityCompat.finishAfterTransition(this);
+        outAnim();
     }
 }

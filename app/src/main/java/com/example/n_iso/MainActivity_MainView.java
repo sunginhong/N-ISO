@@ -1,13 +1,17 @@
 package com.example.n_iso;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.transition.ChangeBounds;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,6 +27,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.n_iso.Utils_Folder.Utils_Anim;
 import com.example.n_iso.Utils_Folder.Utils_Calc;
 
 import java.util.ArrayList;
@@ -38,6 +43,8 @@ public class MainActivity_MainView extends AppCompatActivity  {
     static int myToolbarHeight = 0;
     static int screenWidth;
     static int screenHeight;
+    static float alphaMin = 0.5f;
+    static float scaleMin = 0.7f;
 
     static RelativeLayout main_fl;
     static RelativeLayout menuViewRl;
@@ -64,6 +71,8 @@ public class MainActivity_MainView extends AppCompatActivity  {
     static TextView about_footer;
 
     final ArrayList<FrameLayout> arrayBtmButton = new ArrayList<FrameLayout>();
+    static final ArrayList<TextView> arrayBtmButton_Tv = new ArrayList<TextView>();
+    static final ArrayList<View> arrayBtmButton_Cv = new ArrayList<View>();
 
     static boolean set_fg1 = false;
 
@@ -158,6 +167,26 @@ public class MainActivity_MainView extends AppCompatActivity  {
     }
 
     private void init_btn() {
+        TextView bottomMenu_btn_text_01 = (TextView) findViewById(R.id.bottomMenu_btn_text_01);
+        TextView bottomMenu_btn_text_02 = (TextView) findViewById(R.id.bottomMenu_btn_text_02);
+        TextView bottomMenu_btn_text_03 = (TextView) findViewById(R.id.bottomMenu_btn_text_03);
+        TextView bottomMenu_btn_text_04 = (TextView) findViewById(R.id.bottomMenu_btn_text_04);
+
+        arrayBtmButton_Tv.add(bottomMenu_btn_text_01);
+        arrayBtmButton_Tv.add(bottomMenu_btn_text_02);
+        arrayBtmButton_Tv.add(bottomMenu_btn_text_03);
+        arrayBtmButton_Tv.add(bottomMenu_btn_text_04);
+
+        View bottomMenu_btn_circle_01 = (View) findViewById(R.id.bottomMenu_btn_circle_01);
+        View bottomMenu_btn_circle_02 = (View) findViewById(R.id.bottomMenu_btn_circle_02);
+        View bottomMenu_btn_circle_03 = (View) findViewById(R.id.bottomMenu_btn_circle_03);
+        View bottomMenu_btn_circle_04 = (View) findViewById(R.id.bottomMenu_btn_circle_04);
+
+        arrayBtmButton_Cv.add(bottomMenu_btn_circle_01);
+        arrayBtmButton_Cv.add(bottomMenu_btn_circle_02);
+        arrayBtmButton_Cv.add(bottomMenu_btn_circle_03);
+        arrayBtmButton_Cv.add(bottomMenu_btn_circle_04);
+
         FrameLayout bottomMenu_btn_01 = (FrameLayout) findViewById(R.id.bottomMenu_btn_01);
         FrameLayout bottomMenu_btn_02 = (FrameLayout) findViewById(R.id.bottomMenu_btn_02);
         FrameLayout bottomMenu_btn_03 = (FrameLayout) findViewById(R.id.bottomMenu_btn_03);
@@ -168,6 +197,8 @@ public class MainActivity_MainView extends AppCompatActivity  {
         arrayBtmButton.add(bottomMenu_btn_03);
         arrayBtmButton.add(bottomMenu_btn_04);
 
+        bottomSel(0, 0);
+
         for (int i = 0; i < arrayBtmButton.size(); i++) {
             final int finalI = i;
 
@@ -176,7 +207,7 @@ public class MainActivity_MainView extends AppCompatActivity  {
                 public void onClick(View v) {
                     currentPageIndex = finalI;
                     mViewPager.setCurrentItem(currentPageIndex);
-
+                    bottomSel(finalI, 200);
                     switch (finalI) {
                         case 0:
                             Main_TabFragment1.main_tab_fragment_1_nestedScrollView.fullScroll(View.FOCUS_UP);
@@ -262,7 +293,29 @@ public class MainActivity_MainView extends AppCompatActivity  {
         MainBottom_CircleView.mainBottomMenu_CenterCircle.bringToFront();
     }
 
-
+    static void bottomSel(int index, int duration){
+        for (int i = 0; i < arrayBtmButton_Tv.size(); i++) {
+            if (i == index){
+                if (arrayBtmButton_Tv.get(i).getAlpha() == alphaMin){
+                    Utils_Anim.AlphaAnim(arrayBtmButton_Tv.get(i), alphaMin, 1, duration);
+                    arrayBtmButton_Tv.get(i).setAlpha(1);
+                    Utils_Anim.SclaeAlphaAnim(arrayBtmButton_Cv.get(i), scaleMin, 1, scaleMin, 1, 0.5f, 0.5f, alphaMin, 1, duration*2);
+                    arrayBtmButton_Cv.get(i).setScaleX(1);
+                    arrayBtmButton_Cv.get(i).setScaleY(1);
+                    arrayBtmButton_Cv.get(i).setAlpha(1);
+                }
+            } else {
+                if (arrayBtmButton_Tv.get(i).getAlpha() == 1) {
+                    Utils_Anim.AlphaAnim(arrayBtmButton_Tv.get(i), 1, alphaMin, duration);
+                    arrayBtmButton_Tv.get(i).setAlpha(alphaMin);
+                    Utils_Anim.SclaeAlphaAnim(arrayBtmButton_Cv.get(i), 1, scaleMin, 1, scaleMin, 0.5f, 0.5f, 1, alphaMin, duration*2);
+                    arrayBtmButton_Cv.get(i).setScaleX(scaleMin);
+                    arrayBtmButton_Cv.get(i).setScaleY(scaleMin);
+                    arrayBtmButton_Cv.get(i).setAlpha(alphaMin);
+                }
+            }
+        }
+    }
 
 
 }

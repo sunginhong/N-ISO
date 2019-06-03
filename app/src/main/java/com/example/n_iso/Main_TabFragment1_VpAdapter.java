@@ -1,6 +1,8 @@
 package com.example.n_iso;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pools;
 import android.support.v4.view.PagerAdapter;
@@ -99,7 +101,13 @@ public class Main_TabFragment1_VpAdapter extends PagerAdapter implements View.On
     public void onClick(View view) {
         View view_d = view;
         int selectIndex = view_d.getId();
-        Log.d("sssssss", "sss"+list.get(selectIndex).getLink());
+//        Log.d("sssssss", "sss"+list.get(selectIndex).getLink());
+
+        Intent intent_motion = new Intent(view.getContext(), Main_TabFragment1_VpDetailView.class);
+        intent_motion.putExtra("URL" , list.get(selectIndex).getLink());
+        intent_motion.putExtra("TITLE" , list.get(selectIndex).getTitle());
+        view.getContext().startActivity(intent_motion);
+        ((Activity) context).overridePendingTransition(R.anim.activity_slide_in_100p_forward, R.anim.activity_slide_out_50p_forward);
     }
 
 }

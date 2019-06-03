@@ -11,8 +11,8 @@
     <!--</item>-->
 
     <item
-        android:width="60dp"
-        android:height="60dp"
+        android:width="@dimen/main_bottom_maincircle_width"
+        android:height="@dimen/main_bottom_maincircle_width"
         android:gravity="top|center">
         <shape android:shape="oval">
             <solid android:color="#ffffff" />

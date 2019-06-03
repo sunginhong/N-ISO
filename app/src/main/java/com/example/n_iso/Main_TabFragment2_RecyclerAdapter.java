@@ -1,5 +1,6 @@
 package com.example.n_iso;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -71,9 +72,11 @@ public class Main_TabFragment2_RecyclerAdapter extends RecyclerView.Adapter<Main
 //        Log.d("sssssss"+selectIndex, "sss"+list.get(selectIndex).getUrl());
 
         Intent intent = new Intent(view.getContext(), Main_TabFragment2_DetailView.class);
-        intent.putExtra("URL" ,list.get(selectIndex).getUrl());
+        intent.putExtra("URL" , list.get(selectIndex).getUrl());
         intent.putExtra("TITLE" , list.get(selectIndex).getTitle());
         view.getContext().startActivity(intent);
+
+        ((Activity) context).overridePendingTransition(R.anim.activity_slide_in_100p_forward, R.anim.activity_slide_out_50p_forward);
     }
 
     public static class MyHolder extends RecyclerView.ViewHolder{

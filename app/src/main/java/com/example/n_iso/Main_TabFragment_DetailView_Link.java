@@ -38,7 +38,7 @@ public class Main_TabFragment_DetailView_Link extends AppCompatActivity implemen
         frag2_detail_linkappbar = (AppBarLayout)findViewById(R.id.frag2_detail_linkappbar);
 
         Intent intent = getIntent();
-        String url = intent.getStringExtra("URL");
+        final String url = intent.getStringExtra("URL");
         String title = intent.getStringExtra("TITLE");
 
 //        Log.d("sssssssssssssssssssss"+title, "sssssss"+url);
@@ -56,7 +56,13 @@ public class Main_TabFragment_DetailView_Link extends AppCompatActivity implemen
         frag2_detail_linkWv.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
         frag2_detail_linkWv.setScrollbarFadingEnabled(false);
 
-        frag2_detail_linkWv.loadUrl(url);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                frag2_detail_linkWv.loadUrl(url);
+            }
+        });
+//        frag2_detail_linkWv.loadUrl(url);
         frag2_detail_linkWv.setWebViewClient(new Main_TabFragment_DetailView_Link.WebViewClientClass());
         frag2_detail_linkWv.setWebChromeClient(new FullscreenableChromeClient(this));
 
@@ -91,6 +97,21 @@ public class Main_TabFragment_DetailView_Link extends AppCompatActivity implemen
         webView.getSettings().setAllowFileAccess(true);
         webView.setWebChromeClient(new WebChromeClient());
         webView.getSettings().setUserAgentString("app");
+
+        webView.getSettings().setLoadsImagesAutomatically(true);
+        webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setSupportZoom(false);
+        webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+        webView.getSettings().setAppCacheEnabled(false);
+        webView.getSettings().setDomStorageEnabled(true);
+
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        webView.getSettings().setAllowFileAccess(true);
+        webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
+
+        webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setLoadWithOverviewMode(true);
     }
 
     @Override

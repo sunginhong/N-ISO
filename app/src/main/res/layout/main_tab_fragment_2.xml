@@ -52,6 +52,10 @@
                 </android.support.v7.widget.RecyclerView>
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/footer_Height" />
+
         </LinearLayout>
 
     </com.example.n_iso.Main_TabFragment2_NestedScrollingView>

@@ -1,20 +1,24 @@
 package com.example.n_iso;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.Context;
+import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
+import android.view.Display;
 import android.view.View;
-import android.webkit.WebChromeClient;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-public class Main_TabFragment3_DetailView extends AppCompatActivity implements View.OnClickListener {
+public class Main_TabFragment3_DetailView extends Activity implements View.OnClickListener {
 
     private Context context;
     AppBarLayout frag3_detail_appbar;
@@ -39,13 +43,40 @@ public class Main_TabFragment3_DetailView extends AppCompatActivity implements V
         frag3_detail_appbar = (AppBarLayout)findViewById(R.id.frag3_detail_appbar);
 
         Intent intent = getIntent();
-        String url = intent.getStringExtra("URL");
+        final String url = intent.getStringExtra("URL");
         final String title = intent.getStringExtra("TITLE");
 
         frag3_detailWv = (WebView)findViewById(R.id.frag3_detailWv);
-        frag3_detailWv.loadUrl(url);
         frag3_detailWv.setWebViewClient(new Main_TabFragment3_DetailView.WebViewClientClass());
         frag3_detailWv.setWebChromeClient(new FullscreenableChromeClient(this));
+
+        frag3_detailWv.getSettings().setLoadsImagesAutomatically(true);
+        frag3_detailWv.getSettings().setUseWideViewPort(true);
+        frag3_detailWv.getSettings().setSupportZoom(false);
+        frag3_detailWv.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+        frag3_detailWv.getSettings().setAppCacheEnabled(false);
+        frag3_detailWv.getSettings().setDomStorageEnabled(true);
+
+        frag3_detailWv.getSettings().setJavaScriptEnabled(true);
+        frag3_detailWv.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        frag3_detailWv.getSettings().setAllowFileAccess(true);
+        frag3_detailWv.getSettings().setAllowFileAccessFromFileURLs(true);
+        frag3_detailWv.getSettings().setAllowUniversalAccessFromFileURLs(true);
+
+        frag3_detailWv.getSettings().setUseWideViewPort(true);
+        frag3_detailWv.getSettings().setLoadWithOverviewMode(true);
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                // Code for WebView goes here
+//                frag3_detailWv.clearCache(true);
+//                frag3_detailWv.clearHistory();
+//                clearCookies(context);
+//                frag3_detailWv.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+                frag3_detailWv.loadUrl(url);
+            }
+        });
 
         frag3_detail_ttv = (TextView)findViewById(R.id.frag3_detail_ttv);
         frag3_detail_ttv.setText(title);
@@ -59,6 +90,10 @@ public class Main_TabFragment3_DetailView extends AppCompatActivity implements V
                 return true;
             }
         });
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
 
         frag3_detailWv.setOnScrollChangeListener(new View.OnScrollChangeListener() {
             @Override
@@ -93,18 +128,22 @@ public class Main_TabFragment3_DetailView extends AppCompatActivity implements V
         }
     }
 
-    private void settingWebview(WebView webView){
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(false);
-        webView.getSettings().setLoadsImagesAutomatically(true);
-        webView.getSettings().setUseWideViewPort(true);
-        webView.getSettings().setSupportZoom(false);
-        webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
-        webView.getSettings().setAppCacheEnabled(false);
-        webView.getSettings().setDomStorageEnabled(true);
-        webView.getSettings().setAllowFileAccess(true);
-        webView.setWebChromeClient(new WebChromeClient());
-        webView.getSettings().setUserAgentString("app");
+    @SuppressWarnings("deprecation")
+    public static void clearCookies(Context context)
+    {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            CookieManager.getInstance().removeAllCookies(null);
+            CookieManager.getInstance().flush();
+        } else
+        {
+            CookieSyncManager cookieSyncMngr=CookieSyncManager.createInstance(context);
+            cookieSyncMngr.startSync();
+            CookieManager cookieManager=CookieManager.getInstance();
+            cookieManager.removeAllCookie();
+            cookieManager.removeSessionCookie();
+            cookieSyncMngr.stopSync();
+            cookieSyncMngr.sync();
+        }
     }
 
     @Override
@@ -115,6 +154,7 @@ public class Main_TabFragment3_DetailView extends AppCompatActivity implements V
     @Override
     public void onBackPressed() {
         ActivityCompat.finishAfterTransition(this);
+        outAnim();
     }
 
     @Override
@@ -123,8 +163,13 @@ public class Main_TabFragment3_DetailView extends AppCompatActivity implements V
 //        finish();
     }
 
+    private void outAnim(){
+        this.overridePendingTransition(R.anim.activity_slide_in_100p_backward, R.anim.activity_slide_out_50p_backward);
+    }
+
     @Override
     public void onClick(View view) {
         ActivityCompat.finishAfterTransition(this);
+        outAnim();
     }
 }

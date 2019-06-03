@@ -62,8 +62,10 @@ public class Main_ViewPager implements ViewPager.OnPageChangeListener, ViewPager
             public void run() { MainActivity_MainView.myToolbar.setY(-MainActivity_MainView.myToolbarHeight); }
         };
 
+        MainActivity_MainView.bottomSel(position, 200);
 
         switch (position) {
+
             case 0:
                 if (MainActivity_MainView.myToolbar.getY() == 0){
                     ScrollHederAnim.HeaderShow(MainActivity_MainView.myToolbar, 0, -MainActivity_MainView.myToolbarHeight, 400);
