@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ public class Main_TabFragment1_VpAdapter extends PagerAdapter implements View.On
     private LayoutInflater mInflater;
     private Pools.SimplePool< View > mMyViewPool;
     private static final int MAX_POOL_SIZE = 10;
+    static float titleXpos = 0;
 
 
     public Main_TabFragment1_VpAdapter(Context context, List<Main_TabFragment1_DataVp> list) {
@@ -69,6 +71,12 @@ public class Main_TabFragment1_VpAdapter extends PagerAdapter implements View.On
         main_tab_fragment_1_item_pager_item.setId(i);
         main_tab_fragment_1_item_pager_item.setOnClickListener(this);
 
+        LinearLayout main_tab_fragment_1_item_pager_fl  = view.findViewById(R.id.main_tab_fragment_1_item_pager_fl);
+        Main_TabFragment1_Blog_vpInteraction.titlell.add(main_tab_fragment_1_item_pager_fl);
+
+        ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) main_tab_fragment_1_item_pager_fl.getLayoutParams();
+        titleXpos = lp.rightMargin;
+
         TextView main_tab_fragment_1_item_pager_titleView = view.findViewById(R.id.main_tab_fragment_1_item_pager_titleView);
         main_tab_fragment_1_item_pager_titleView.setText(list.get(i).getTitle());
 
@@ -76,6 +84,8 @@ public class Main_TabFragment1_VpAdapter extends PagerAdapter implements View.On
         main_tab_fragment_1_item_pager_category.setText(list.get(i).getDescription());
 
         ImageView main_tab_fragment_1_item_pager_imgView = view.findViewById(R.id.main_tab_fragment_1_item_pager_imgView);
+        Main_TabFragment1_Blog_vpInteraction.thumbImage.add(main_tab_fragment_1_item_pager_imgView);
+
         Glide.with(context)
                 .load(list.get(i).getImage())
                 .centerCrop()

@@ -96,6 +96,7 @@ public class MainActivity_MainView extends AppCompatActivity  {
 
         mViewPager.setAdapter(new Main_PagerAdapter(getSupportFragmentManager()));
         mViewPager.setCurrentItem(0);
+        mViewPager.setOffscreenPageLimit(4);
         Main_ViewPager Main_ViewPager = new Main_ViewPager(mViewPager);
 
         myToolbar = (Toolbar) findViewById(R.id.main_top_toolbar);
@@ -210,17 +211,17 @@ public class MainActivity_MainView extends AppCompatActivity  {
                     bottomSel(finalI, 200);
                     switch (finalI) {
                         case 0:
-                            Main_TabFragment1.main_tab_fragment_1_nestedScrollView.fullScroll(View.FOCUS_UP);
-                            Main_TabFragment1.main_tab_fragment_1_nestedScrollView.smoothScrollTo(0,0);
-                            /////
-                            new Timer().schedule(
-                                    new TimerTask(){
-                                        @Override
-                                        public void run(){
-                                            Main_TabFragment1.main_tab_fragment_1_nestedScrollView.fullScroll(View.FOCUS_UP);
-                                            Main_TabFragment1.main_tab_fragment_1_nestedScrollView.smoothScrollTo(0,0);
-                                        }
-                                    }, 100);
+//                            Main_TabFragment1.main_tab_fragment_1_nestedScrollView.fullScroll(View.FOCUS_UP);
+//                            Main_TabFragment1.main_tab_fragment_1_nestedScrollView.smoothScrollTo(0,0);
+//                            /////
+//                            new Timer().schedule(
+//                                    new TimerTask(){
+//                                        @Override
+//                                        public void run(){
+//                                            Main_TabFragment1.main_tab_fragment_1_nestedScrollView.fullScroll(View.FOCUS_UP);
+//                                            Main_TabFragment1.main_tab_fragment_1_nestedScrollView.smoothScrollTo(0,0);
+//                                        }
+//                                    }, 100);
                             break;
                         case 1:
                             break;

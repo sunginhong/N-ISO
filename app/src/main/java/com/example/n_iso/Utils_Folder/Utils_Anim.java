@@ -84,4 +84,21 @@ public class Utils_Anim {
         anim.setDuration(duration);
         view.startAnimation(anim);
     }
+
+    public static void ModulatetTransXAnim(View view, float value, float rangeA, float rangeB, float rangeC, float rangeD){
+        float fromHigh = 0;
+        float fromLow = 0;
+        float toHigh = 0;
+        float toLow = 0;
+        float result = 0;
+        Double resultF = 0.0;
+
+        fromLow = rangeA;
+        fromHigh = rangeB;
+        toLow = rangeC;
+        toHigh = rangeD;
+
+        result = toLow + (((value - fromLow) / (fromHigh - fromLow)) * (toHigh - toLow));
+        view.setTranslationX(result);
+    }
 }

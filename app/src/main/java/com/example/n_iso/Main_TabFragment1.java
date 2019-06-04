@@ -1,13 +1,7 @@
 package com.example.n_iso;
 
-import android.animation.Animator;
-import android.animation.AnimatorInflater;
-import android.content.ContentValues;
-
-import android.os.AsyncTask;
 import android.os.Bundle;
 
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.NestedScrollView;
 
@@ -21,37 +15,14 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import android.content.ContentValues;
-import android.content.Context;
-import android.os.Handler;
-import android.support.v4.view.MenuItemCompat;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.text.Html;
-import android.text.SpannableString;
-import android.util.Log;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import android.os.AsyncTask;
 
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.support.v7.widget.RecyclerView;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.BufferedReader;
@@ -59,27 +30,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.SearchView;
-import android.widget.TextView;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import org.xml.sax.Attributes;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.DefaultHandler;
 
 public class Main_TabFragment1 extends Fragment {
 
@@ -87,6 +39,7 @@ public class Main_TabFragment1 extends Fragment {
     Main_TabFragment1_RecyclerAdapter Main_TabFragment1_RecyclerAdapter;
     List<Main_TabFragment1_DataRecycle> recyclelist = new ArrayList<>();
     List<Main_TabFragment1_DataVp> vplist = new ArrayList<Main_TabFragment1_DataVp>();
+    static int vpLength = 0;
 
     ViewPager main_tab_fragment_1_vp;
     RecyclerView main_tab_fragment_1_recycler;
@@ -95,6 +48,8 @@ public class Main_TabFragment1 extends Fragment {
 
     private SearchView searchView = null;
     private SearchView.OnQueryTextListener queryTextListener;
+    private Main_TabFragment1_Blog_vpInteraction main_Blog_vpInteraction;
+    static View main_frg1_vp_current_line;
 
     public Main_TabFragment1() {
     }
@@ -121,6 +76,8 @@ public class Main_TabFragment1 extends Fragment {
         main_tab_fragment_1_nestedScrollView.setSmoothScrollingEnabled(true);
         main_tab_fragment_1_nestedScrollView.fullScroll(View.FOCUS_UP);
         main_tab_fragment_1_nestedScrollView.smoothScrollTo(0,0);
+
+        main_frg1_vp_current_line = layout.findViewById(R.id.current_line);
 
         return layout;
     }
@@ -162,6 +119,8 @@ public class Main_TabFragment1 extends Fragment {
                                     main_tab_fragment_1_vp.setAdapter(mAdapter);
                                     main_tab_fragment_1_vp.setClipToPadding(false);
                                     main_tab_fragment_1_vp.setOffscreenPageLimit(vplist.size()-1);
+                                    main_Blog_vpInteraction = new Main_TabFragment1_Blog_vpInteraction(main_tab_fragment_1_vp);
+                                    vpLength = vplist.size()-1;
                                 }
                             });
                         }

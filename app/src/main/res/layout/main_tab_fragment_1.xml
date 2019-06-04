@@ -74,7 +74,28 @@
                 <android.support.v4.view.ViewPager
                     android:id="@+id/main_tab_fragment_1_vp"
                     android:layout_width="match_parent"
-                    android:layout_height="375dp" />
+                    android:layout_height="375dp" >
+                </android.support.v4.view.ViewPager>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="0dp">
+
+                    <View
+                        android:background="@color/white"
+                        android:alpha="0.2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <View
+                        android:id="@+id/current_line"
+                        android:background="@color/circleColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:transformPivotX="0dp"/>
+                </FrameLayout>
+
             </LinearLayout>
 
             <include

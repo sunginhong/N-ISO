@@ -36,6 +36,7 @@
                     android:fontFamily="@font/noto_sans"
                     android:text="ⓒ Interactive Studio 2019 ALL RIGHTS RESERVED"
                     android:textColor="@color/grey_1"
+                    android:layout_marginTop="-12sp"
                     android:textSize="12sp" />
             </LinearLayout>
 
