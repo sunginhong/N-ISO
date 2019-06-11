@@ -1,10 +1,13 @@
 package com.example.n_iso;
 
+import android.animation.LayoutTransition;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,9 +24,11 @@ import android.widget.FrameLayout;
 import android.view.Display;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.graphics.Point;
 import android.widget.ScrollView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -45,6 +50,7 @@ public class MainActivity_MainView extends AppCompatActivity  {
     static int screenHeight;
     static float alphaMin = 0.5f;
     static float scaleMin = 0.7f;
+    static int main_bottom_actionbar_Height = 0;
 
     static RelativeLayout main_fl;
     static RelativeLayout menuViewRl;
@@ -69,6 +75,7 @@ public class MainActivity_MainView extends AppCompatActivity  {
     static TextView about_title;
     static TextView about_ptag;
     static TextView about_footer;
+    static Vibrator mVibrator;
 
     final ArrayList<FrameLayout> arrayBtmButton = new ArrayList<FrameLayout>();
     static final ArrayList<TextView> arrayBtmButton_Tv = new ArrayList<TextView>();
@@ -82,6 +89,7 @@ public class MainActivity_MainView extends AppCompatActivity  {
         setContentView(R.layout.activity_main_vp);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         screeSizeCalc();
 //        mainBottom_bgView = (View) findViewById(R.id.mainBottom_bgView);
@@ -108,6 +116,8 @@ public class MainActivity_MainView extends AppCompatActivity  {
         myToolbarHeight = Utils_Calc.dpToPx(56);
         ScrollHederAnim.HeaderShow(myToolbar, 0, -myToolbarHeight, 0);
         myToolbar.setY(-myToolbarHeight);
+
+        main_bottom_actionbar_Height = Utils_Calc.dpToPx(56);
 
         aboutView_fl = (FrameLayout) findViewById(R.id.aboutView_fl);
         aboutView_fl.setX(screenWidth);
@@ -241,7 +251,7 @@ public class MainActivity_MainView extends AppCompatActivity  {
     public boolean onCreateOptionsMenu(Menu menu) {
         //return super.onCreateOptionsMenu(menu);
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.main_menu, menu);
+//        menuInflater.inflate(R.menu.main_menu, menu);
 
         return true;
     }

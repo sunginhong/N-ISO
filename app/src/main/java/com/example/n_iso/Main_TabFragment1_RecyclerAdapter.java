@@ -20,6 +20,7 @@ import android.widget.Filterable;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -70,6 +71,9 @@ public class Main_TabFragment1_RecyclerAdapter extends RecyclerView.Adapter<Main
         myHolder.setId(i);
         myHolder.linearlayout.setId(i);
 
+        Main_TabFragment1_NestedScrollingView.contents.add(myHolder);
+//        System.out.println(myHolder.container);
+
         String categoryStr = list.get(i).getCategory().trim();
         String[] strArray = categoryStr.split(" ");
         StringBuilder categoryStr_builder = new StringBuilder();
@@ -84,7 +88,7 @@ public class Main_TabFragment1_RecyclerAdapter extends RecyclerView.Adapter<Main
                 .load(list.get(i).getImage())
                 .centerCrop()
                 .skipMemoryCache(true)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(myHolder.imageView);
 
 
@@ -152,6 +156,7 @@ public class Main_TabFragment1_RecyclerAdapter extends RecyclerView.Adapter<Main
 
     public static class MyHolder extends RecyclerView.ViewHolder{
 
+        LinearLayout container;
         LinearLayout linearlayout;
         TextView categoryTextView;
         FrameLayout imageViewContain;
@@ -161,6 +166,7 @@ public class Main_TabFragment1_RecyclerAdapter extends RecyclerView.Adapter<Main
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
+            container = itemView.findViewById(R.id.main_tab_fragment_1_item_row_itemll);
             linearlayout = itemView.findViewById(R.id.main_tab_fragment_1_item_row_ll);
             categoryTextView = itemView.findViewById(R.id.main_tab_fragment_1_item_row_category);
             imageViewContain = itemView.findViewById(R.id.main_tab_fragment_1_item_row_imgView_contain);

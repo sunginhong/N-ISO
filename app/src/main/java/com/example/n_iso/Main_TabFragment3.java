@@ -93,7 +93,8 @@ public class Main_TabFragment3 extends Fragment {
         MenuItem item = menu.findItem(R.id.action_search);
 
         searchView = (SearchView) MenuItemCompat.getActionView(item);
-        searchView.setQueryHint("타이틀을 입력해주세요");
+        searchView.setQueryHint("검색어를 입력해주세요");
+        searchView.setMaxWidth(Integer.MAX_VALUE);
         searchView.clearFocus();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

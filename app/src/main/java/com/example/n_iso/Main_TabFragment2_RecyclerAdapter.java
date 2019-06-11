@@ -54,7 +54,7 @@ public class Main_TabFragment2_RecyclerAdapter extends RecyclerView.Adapter<Main
                 .load(list.get(i).getImage())
                 .centerCrop()
                 .skipMemoryCache(true)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(myHolder.imageView);
 
         myHolder.categoryTextView.setText(list.get(i).getCategory());
@@ -69,7 +69,6 @@ public class Main_TabFragment2_RecyclerAdapter extends RecyclerView.Adapter<Main
     public void onClick(View view) {
         View view_d = view;
         int selectIndex = view_d.getId();
-//        Log.d("sssssss"+selectIndex, "sss"+list.get(selectIndex).getUrl());
 
         Intent intent = new Intent(view.getContext(), Main_TabFragment2_DetailView.class);
         intent.putExtra("URL" , list.get(selectIndex).getUrl());

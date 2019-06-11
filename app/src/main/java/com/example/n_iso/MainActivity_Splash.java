@@ -69,8 +69,9 @@ public class MainActivity_Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+//        splashEnd();
         new NetworkTask_Get_About_Parse("http://n-interaction.com/?page_id=8", null).execute();
-
+//
         new NetworkTask_Get_Ninteraction_Parse("http://n-interaction.com", null, 0).execute();
         ProcessXmlTask xmlTask = new ProcessXmlTask();
         xmlTask.execute("https://rss.blog.naver.com/nvr_design.xml?rss=1.0");
@@ -121,7 +122,6 @@ public class MainActivity_Splash extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void result) {
-
             super.onPostExecute(result);
         }
     }

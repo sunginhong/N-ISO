@@ -2,6 +2,7 @@ package com.example.n_iso;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -24,6 +25,7 @@ public class MainBottom_CircleView extends android.support.v7.widget.AppCompatIm
     Context context;
     static boolean drag = false;
     static boolean dragENTER = false;
+    boolean isDragVib = false;
     private float dragStart_x = 0;
     private float dragStart_y = 0;
     static float dragMove_x = 0;
@@ -76,6 +78,7 @@ public class MainBottom_CircleView extends android.support.v7.widget.AppCompatIm
                 if (!drag){
 //                    dragMove_x = MainBottom_GooeyView.circle.getX();
                     dragMove_y = MainBottom_GooeyView.circle.getY();
+                    isDragVib = false;
                 }
                 dragStart_y = mainBottomMenu_CenterCircle.getY() - e.getRawY();
                 MainBottom_GooeyView.dragStart_point_y = e.getY();
@@ -93,6 +96,19 @@ public class MainBottom_CircleView extends android.support.v7.widget.AppCompatIm
                         dragMove_y = MainActivity_MainView.screenHeight / 2 - MainBottom_GooeyView.circleWidth;
                         MainActivity_MainView.mainBottomMenu_CenterView_IndexColor.setAlpha(0);
                     }
+
+                    if (MainActivity_MainView.mainBottomMenu_CenterRlView.getY() < MainActivity_MainView.screenHeight/1.8f){
+                        if (!isDragVib){
+                            isDragVib = true;
+                            MainActivity_MainView.mVibrator.vibrate(30);
+                        }
+                    } else {
+                        if (isDragVib){
+                            isDragVib = false;
+                            MainActivity_MainView.mVibrator.vibrate(10);
+                        }
+                    }
+
 //                    mainBottomMenu_CenterCircle.setX(dragMove_x);
                     mainBottomMenu_CenterCircle.setY(dragMove_y);
 //                    MainActivity_MainView.mainBottomMenu_CenterRlView.setX(dragMove_x);
@@ -146,6 +162,7 @@ public class MainBottom_CircleView extends android.support.v7.widget.AppCompatIm
                 }
 
                 if (drag){
+                    isDragVib = false;
 //                    System.out.println("ACTION_UP");
                     if (MainActivity_MainView.mainBottomMenu_CenterRlView.getY() < MainActivity_MainView.screenHeight/1.8f){
                         if (!dragENTER) {

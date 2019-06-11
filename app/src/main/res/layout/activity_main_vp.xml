@@ -21,15 +21,40 @@
             android:orientation="vertical"
             android:clipChildren="false">
 
+            <!--<android.support.v7.widget.Toolbar-->
+                <!--android:id="@+id/main_top_toolbar"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/mainBottom_toolBar__Height"-->
+                <!--android:background="?attr/colorPrimary"-->
+                <!--android:elevation="4dp"-->
+                <!--android:minHeight="?attr/actionBarSize"-->
+                <!--app:contentInsetStartWithNavigation="0dp" />-->
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/main_top_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/mainBottom_toolBar__Height"
                 android:background="?attr/colorPrimary"
-                android:elevation="4dp"
+                android:elevation="2dp"
                 android:minHeight="?attr/actionBarSize"
-                android:theme="@style/AppTheme.SearchView"
-                app:contentInsetStartWithNavigation="0dp" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:contentInsetStartWithNavigation="0dp">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/noto_sans_bold"
+                        android:text="N-Interaction"
+                        android:textColor="#fff"
+                        android:textSize="20sp" />
+                </FrameLayout>
+            </android.support.v7.widget.Toolbar>
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/mainvp"

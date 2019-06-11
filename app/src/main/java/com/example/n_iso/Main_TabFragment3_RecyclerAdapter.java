@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +54,7 @@ public class Main_TabFragment3_RecyclerAdapter extends RecyclerView.Adapter<Main
                 .load(list.get(i).getImage())
                 .centerCrop()
                 .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(myHolder.imageView);
 
         myHolder.categoryTextView.setText(list.get(i).getCategory());
@@ -68,7 +70,6 @@ public class Main_TabFragment3_RecyclerAdapter extends RecyclerView.Adapter<Main
     public void onClick(View view) {
         View view_d = view;
         int selectIndex = view_d.getId();
-//        Log.d("sssssss", "sss"+list.get(selectIndex).getUrl());
 
         Intent intent_motion = new Intent(view.getContext(), Main_TabFragment3_DetailView.class);
         intent_motion.putExtra("URL" , list.get(selectIndex).getUrl());

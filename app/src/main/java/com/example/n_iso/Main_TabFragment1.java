@@ -99,21 +99,21 @@ public class Main_TabFragment1 extends Fragment {
                                         k = k + 1;
                                         recyclelist.add(new Main_TabFragment1_DataRecycle(MainActivity_Splash.mainListCategory.get(k), MainActivity_Splash.mainListTitle.get(k), MainActivity_Splash.mainListSubTitle.get(k), MainActivity_Splash.mainListThumb.get(k), MainActivity_Splash.mainListUrl.get(k)));
                                     }
-
-                                    ///// 네이버 디자인 블로그 View Adapter
+//
+//                                    ///// 네이버 디자인 블로그 View Adapter
                                     int n = 1;
                                     while(n < MainActivity_Splash.display-1) {
                                         n = n + 1;
                                         vplist.add(new Main_TabFragment1_DataVp( MainActivity_Splash.title[n-0], MainActivity_Splash.desc[n-1], MainActivity_Splash.link[n-0], MainActivity_Splash.thumbImage[n-0]));
                                     }
-
-                                    ///// recent View
+//
+//                                    ///// recent View
                                     main_tab_fragment_1_recycler = layout.findViewById(R.id.main_tab_fragment_1_recycler);
                                     main_tab_fragment_1_recycler.setLayoutManager(new LinearLayoutManager(getContext()));
                                     Main_TabFragment1_RecyclerAdapter = new Main_TabFragment1_RecyclerAdapter(getContext(),recyclelist);
                                     main_tab_fragment_1_recycler.setAdapter(Main_TabFragment1_RecyclerAdapter);
-
-                                    ///// 네이버 디자인 블로그 View
+//
+//                                    ///// 네이버 디자인 블로그 View
                                     main_tab_fragment_1_vp = layout.findViewById(R.id.main_tab_fragment_1_vp);
                                     Main_TabFragment1_VpAdapter mAdapter = new Main_TabFragment1_VpAdapter(getContext(), vplist);
                                     main_tab_fragment_1_vp.setAdapter(mAdapter);
@@ -139,7 +139,7 @@ public class Main_TabFragment1 extends Fragment {
 
         searchView = (SearchView) MenuItemCompat.getActionView(item);
 //        searchView.setActivated(true);
-        searchView.setQueryHint("타이틀을 입력해주세요");
+        searchView.setQueryHint("검색어를 입력해주세요");
 //        searchView.onActionViewExpanded();
 //        searchView.setIconified(false);
         searchView.clearFocus();

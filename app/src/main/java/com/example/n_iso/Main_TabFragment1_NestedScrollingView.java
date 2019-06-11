@@ -6,11 +6,20 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
+import com.example.n_iso.Utils_Folder.Utils_Anim;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main_TabFragment1_NestedScrollingView extends NestedScrollView {
     private int mState = RecyclerView.SCROLL_STATE_IDLE;
     static int ScrollY = 0;
+    static List<Main_TabFragment1_RecyclerAdapter.MyHolder> contents = new ArrayList<Main_TabFragment1_RecyclerAdapter.MyHolder>();
+    int pos = 0;
 
     public interface NestedScrollViewScrollStateListener {
         void onNestedScrollViewStateChanged(int state);
@@ -73,8 +82,40 @@ public class Main_TabFragment1_NestedScrollingView extends NestedScrollView {
     protected void onScrollChanged(int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
         ScrollY = scrollY;
         super.onScrollChanged(scrollX, scrollY, oldScrollX, oldScrollY);
-//        System.out.println("SSSSS"+scrollY);
+        int n = -1;
+        while(n < MainActivity_Splash.display-1) {
+            n = n + 1;
+        }
 
+        for (int i = 0; i < contents.size(); i++) {
+            float scrollY_calc = ScrollY - contents.get(i).itemView.getY();
+            if (scrollY_calc < 0 && scrollY_calc > -(MainActivity_MainView.screenHeight-MainActivity_MainView.main_bottom_actionbar_Height/4)) {
+                scrollCardCheck(contents.get(i));
+                break;
+            }
+        }
+        cardAnim(pos, 400);
+    }
+
+    public void scrollCardCheck(Main_TabFragment1_RecyclerAdapter.MyHolder MyHolder){
+        for (int i = 0; i < contents.size(); i++) {
+            pos = MyHolder.getPosition();
+            break;
+        }
+    }
+
+    public void cardAnim(int index, int duration){
+        for (int i = 0; i < contents.size(); i++) {
+//            float scrollY_calc = ScrollY - contents.get(i).itemView.getY();
+
+        }
+
+        float scrollY_calc = ScrollY - contents.get(index).itemView.getY();
+
+        if (scrollY_calc < MainActivity_MainView.screenHeight-MainActivity_MainView.main_bottom_actionbar_Height/4){
+            System.out.println(index);
+        }
+//        Utils_Anim.TransAnim(MyHolder.container, 0, 0, 200, 0, duration);
     }
 
 }

@@ -53,7 +53,6 @@ public class Main_TabFragment1_Blog_vpInteraction implements ViewPager.OnPageCha
         String strNumber = String.format("%.2f", CAL_PAGING);
         float strNumber_n = Float.parseFloat(strNumber);
         CAL_PAGING_F = strNumber_n;
-//        Main_TabFragment1.main_frg1_vp_current_line.setScaleX((float) CAL_PAGING_F);
         Utils_Anim.SclaeAnim(Main_TabFragment1.main_frg1_vp_current_line, (1)*(float) CAL_PAGING, (1)*(float) CAL_PAGING_F, 1.0f, 1.0f, 0.0f, 0.5f, 0);
     }
 
