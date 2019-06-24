@@ -2,11 +2,16 @@ package com.example.n_iso;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -69,12 +74,65 @@ public class MainActivity_Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-//        splashEnd();
-        new NetworkTask_Get_About_Parse("http://n-interaction.com/?page_id=8", null).execute();
-//
-        new NetworkTask_Get_Ninteraction_Parse("http://n-interaction.com", null, 0).execute();
-        ProcessXmlTask xmlTask = new ProcessXmlTask();
-        xmlTask.execute("https://rss.blog.naver.com/nvr_design.xml?rss=1.0");
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if(networkInfo != null && networkInfo.isConnected()) {
+            if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
+                //WIFI에 연결됨
+                new NetworkTask_Get_About_Parse("http://n-interaction.com/?page_id=8", null).execute();
+                new NetworkTask_Get_Ninteraction_Parse("http://n-interaction.com", null, 0).execute();
+                ProcessXmlTask xmlTask = new ProcessXmlTask();
+                xmlTask.execute("https://rss.blog.naver.com/nvr_design.xml?rss=1.0");
+
+            } else if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
+                //LTE(이동통신망)에 연결됨
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);     // 여기서 this는 Activity의 this
+
+                builder.setTitle("WIFI환경에서 사용을 권장합니다.")        // 제목 설정
+                        .setMessage("서비스를 계속진행하시겠습니까?")        // 메세지 설정
+                        .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                            // 확인 버튼 클릭시 설정
+                            public void onClick(DialogInterface dialog, int whichButton){
+                                dialog.cancel();
+                                new NetworkTask_Get_About_Parse("http://n-interaction.com/?page_id=8", null).execute();
+                                new NetworkTask_Get_Ninteraction_Parse("http://n-interaction.com", null, 0).execute();
+                                ProcessXmlTask xmlTask = new ProcessXmlTask();
+                                xmlTask.execute("https://rss.blog.naver.com/nvr_design.xml?rss=1.0");
+                            }
+                        })
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener(){
+                            // 취소 버튼 클릭시 설정
+                            public void onClick(DialogInterface dialog, int whichButton){
+                                finish();
+                            }
+                        });
+
+                AlertDialog dialog = builder.create();    // 알림창 객체 생성
+
+                dialog.show();    // 알림창 띄우기
+
+            }
+        } else {
+            // 연결되지않음
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);     // 여기서 this는 Activity의 this
+
+            builder.setTitle("알람 팝업")        // 제목 설정
+                    .setMessage("네트워크에 연결 되지 않았으며\n" +
+                            "본 서비스는 WIFI환경에서 사용을 권장합니다")        // 메세지 설정
+                    .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
+                    .setNegativeButton("닫기", new DialogInterface.OnClickListener(){
+                        // 취소 버튼 클릭시 설정
+                        public void onClick(DialogInterface dialog, int whichButton){
+                            finish();
+                        }
+                    });
+
+            AlertDialog dialog = builder.create();    // 알림창 객체 생성
+
+            dialog.show();    // 알림창 띄우기
+        }
     }
 
     private void splashEnd() {
@@ -541,6 +599,12 @@ public class MainActivity_Splash extends AppCompatActivity {
             super.onPostExecute(aVoid);
         }
 
+    }
+
+    public NetworkInfo getNetworkState() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo;
     }
 
 
