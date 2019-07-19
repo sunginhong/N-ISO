@@ -51,7 +51,7 @@ public class Main_TabFragment3_RecyclerAdapter extends RecyclerView.Adapter<Main
 
         Glide.with(context).clear(myHolder.imageView);
         Glide.with(context)
-                .asGif()
+//                .asGif()
                 .load(list.get(i).getImage())
                 .centerCrop()
                 .skipMemoryCache(true)
