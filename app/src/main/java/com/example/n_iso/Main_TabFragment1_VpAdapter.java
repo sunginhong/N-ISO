@@ -78,20 +78,23 @@ public class Main_TabFragment1_VpAdapter extends PagerAdapter implements View.On
         titleXpos = lp.rightMargin;
 
         TextView main_tab_fragment_1_item_pager_titleView = view.findViewById(R.id.main_tab_fragment_1_item_pager_titleView);
-        main_tab_fragment_1_item_pager_titleView.setText(list.get(i).getTitle());
+//        main_tab_fragment_1_item_pager_titleView.setText(list.get(i).getTitle());
 
         TextView main_tab_fragment_1_item_pager_category = view.findViewById(R.id.main_tab_fragment_1_item_pager_description);
-        main_tab_fragment_1_item_pager_category.setText(list.get(i).getDescription());
+//        main_tab_fragment_1_item_pager_category.setText(list.get(i).getDescription());
 
         ImageView main_tab_fragment_1_item_pager_imgView = view.findViewById(R.id.main_tab_fragment_1_item_pager_imgView);
         Main_TabFragment1_Blog_vpInteraction.thumbImage.add(main_tab_fragment_1_item_pager_imgView);
 
         Glide.with(context)
+                .asGif()
                 .load(list.get(i).getImage())
                 .centerCrop()
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(main_tab_fragment_1_item_pager_imgView);
+        main_tab_fragment_1_item_pager_imgView.setScaleX(1.1f);
+        main_tab_fragment_1_item_pager_imgView.setScaleY(1.1f);
 
         return view;
     }
