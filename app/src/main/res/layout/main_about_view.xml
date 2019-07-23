@@ -23,31 +23,6 @@
             android:clipToPadding="false"
             android:id="@+id/aboutView_fl">
 
-            <com.example.n_iso.MyVideoView
-                android:id="@+id/aboutView_vv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true" />
-
-
-            <ImageButton
-                android:id="@+id/play_button"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:alpha="0" />
-
-            <View
-                android:id="@+id/aboutView_dv"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:alpha="0"
-                android:background="@color/black" />
-
             <ScrollView
                 android:id="@+id/aboutView_sv"
                 android:layout_width="match_parent"
@@ -74,15 +49,15 @@
 
                         <TextView
                             android:id="@+id/about_title"
-                            android:fontFamily="@font/noto_serif_bold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="20dp"
-                            android:text="TextView"
+                            android:layout_marginBottom="50dp"
+                            android:fontFamily="@font/noto_serif_bold"
                             android:lineSpacingExtra="10sp"
+                            android:text="TextView"
                             android:textAllCaps="true"
-                            android:textSize="22sp"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textSize="22sp" />
 
                         <TextView
                             android:id="@+id/about_ptag"

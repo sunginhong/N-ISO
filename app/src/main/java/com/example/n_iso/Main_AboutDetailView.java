@@ -26,9 +26,9 @@ public class Main_AboutDetailView extends AppCompatActivity implements View.OnCl
     private Context context;
     private FrameLayout activity_about_fl;
     private RelativeLayout activity_about_rl;
-    private View aboutView_dv;
+//    private View aboutView_dv;
     private FrameLayout aboutView_fl;
-    private MyVideoView aboutView_vv;
+//    private MyVideoView aboutView_vv;
     private ImageButton mPlayButton;
 
     private ScrollView aboutView_sv;
@@ -68,8 +68,8 @@ public class Main_AboutDetailView extends AppCompatActivity implements View.OnCl
         Utils_Anim.AlphaAnim(aboutView_fl, 0, 1, 200);
         Utils_Anim.AlphaAnim(activity_about_rl, 0, 1, 200);
 
-        aboutView_dv = (View) findViewById(R.id.aboutView_dv);
-        aboutView_vv = (MyVideoView) findViewById(R.id.aboutView_vv);
+//        aboutView_dv = (View) findViewById(R.id.aboutView_dv);
+//        aboutView_vv = (MyVideoView) findViewById(R.id.aboutView_vv);
         about_detail_backbtn = (FrameLayout)findViewById(R.id.about_detail_backbtn);
         about_detail_backbtn.setOnClickListener(this);
 //        aboutView_vv.requestFocus();
@@ -77,17 +77,17 @@ public class Main_AboutDetailView extends AppCompatActivity implements View.OnCl
 
 //        Uri aboutVideo = Uri.parse("android.resource://" + getPackageName()+ "/"+R.raw.reel);
 //        aboutView_vv.setVideoURI(MainActivity_MainView.aboutVideo);
-        aboutView_vv.setAlpha(0);
+//        aboutView_vv.setAlpha(0);
 //        stopVideo();
 //        playVideo();
 
         // 동영상 재생이 완료된걸 알수있는 리스너
-        aboutView_vv.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            // 동영상 재생이 완료된후 호출되는 메서드
-            public void onCompletion(MediaPlayer player) {
-                playVideo();
-            }
-        });
+//        aboutView_vv.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//            // 동영상 재생이 완료된후 호출되는 메서드
+//            public void onCompletion(MediaPlayer player) {
+//                playVideo();
+//            }
+//        });
 
         ///
         aboutView_sv = (ScrollView) findViewById(R.id.aboutView_sv);
@@ -112,12 +112,12 @@ public class Main_AboutDetailView extends AppCompatActivity implements View.OnCl
     }
 
     private void playVideo() {
-        aboutView_vv.seekTo(0);
-        aboutView_vv.start();
+//        aboutView_vv.seekTo(0);
+//        aboutView_vv.start();
     }
 
     private void stopVideo() {
-        aboutView_vv.pause();
+//        aboutView_vv.pause();
     }
 
     @Override
