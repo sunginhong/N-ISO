@@ -1,14 +1,21 @@
 package com.example.n_iso;
 
 import android.animation.ValueAnimator;
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Vibrator;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.example.n_iso.Utils_Folder.Utils_Anim;
 import com.example.n_iso.Utils_Folder.Utils_Calc;
@@ -57,7 +64,7 @@ public class MainBottom_CircleView extends android.support.v7.widget.AppCompatIm
         mainBottomMenu_CenterCircle = (ImageView) findViewById(R.id.mainBottomMenu_CenterCircle);
         mainBottom_bgView_Height = Utils_Calc.dpToPx(75+10);
         mainBottomMenu_CenterCircle_onriginY = mainBottomMenu_CenterCircle.getY();
-
+        context = ApplicationClass.getContext();
 //        MainActivity_MainView.mainBottomMenu_CenterRlView.setOnClickListener(this);
         new Timer().schedule(
                 new TimerTask(){
@@ -101,6 +108,8 @@ public class MainBottom_CircleView extends android.support.v7.widget.AppCompatIm
                         if (!isDragVib){
                             isDragVib = true;
                             MainActivity_MainView.mVibrator.vibrate(30);
+                            MainBottom_GooeyView.gooeyview_canvas.setAlpha(1);
+                            MainActivity_MainView.menuViewRl.setAlpha(1);
                         }
                     } else {
                         if (isDragVib){
@@ -133,32 +142,41 @@ public class MainBottom_CircleView extends android.support.v7.widget.AppCompatIm
                     drag = false;
                     dragENTER = true;
 
-                    dragMove_y = MainActivity_MainView.mainBottomMenu_CenterRlView.getY();
-                    Utils_Anim.TransAnim(MainActivity_MainView.mainBottomMenu_CenterRlView, 0, 0, -(MainActivity_MainView.screenHeight/2 - (MainBottom_GooeyView.circleWidth + dragMove_y)), 0, 400);
+//                    dragMove_y = MainActivity_MainView.mainBottomMenu_CenterRlView.getY();
+//                    Utils_Anim.TransAnim(MainActivity_MainView.mainBottomMenu_CenterRlView, 0, 0, -(MainActivity_MainView.screenHeight/2 - (MainBottom_GooeyView.circleWidth + dragMove_y)), 0, 400);
+//                    Utils_Anim.TransAnim(MainActivity_MainView.mainBottomMenu_CenterRlView, 0, 0, 0 + MainActivity_MainView.screenHeight/2 - MainBottom_GooeyView.circleWidth, 0, 400);
 
-                    MainActivity_MainView.mainBottomMenu_CenterRlView.setY(0 + MainBottom_GooeyView.circleWidth/circleRate);
-                    MainActivity_MainView.mainBottomMenu_CenterRlView.invalidate();
+//                    MainActivity_MainView.mainBottomMenu_CenterRlView.setY(0 + MainBottom_GooeyView.circleWidth/circleRate);
+//                    MainActivity_MainView.mainBottomMenu_CenterRlView.setY(0 + MainActivity_MainView.screenHeight/2 - MainBottom_GooeyView.circleWidth);
+//                    MainActivity_MainView.mainBottomMenu_CenterRlView.invalidate();
 
-                    Utils_Anim.AlphaAnim(MainActivity_MainView.menuViewRl, MainActivity_MainView.menuViewRl.getAlpha(), 1, 200);
-                    MainActivity_MainView.menuViewRl.setAlpha(1);
+                    Utils_Anim.AlphaAnim(MainActivity_MainView.menuViewRl, MainActivity_MainView.menuViewRl.getAlpha(), 1, 300);
+
 
                     MainBottom_GooeyView.float_calcRate_alpha_in = 0;
                     MainBottom_GooeyView.float_calcRate_alpha_out = 1;
 
                     Utils_Anim.drawableAlphaAnim(MainActivity_MainView.mainBottomMenu_CenterView_IndexColor, MainActivity_MainView.mainBottomMenu_CenterView_IndexColor.getImageAlpha(), 0, 200);
                     Utils_Anim.drawableAlphaAnim(MainActivity_MainView.mainBottomMenu_CenterView_Icn_whiteLine, MainActivity_MainView.mainBottomMenu_CenterView_Icn_whiteLine.getImageAlpha(), 0, 200);
-                    Utils_Anim.drawableAlphaAnim(MainActivity_MainView.mainBottomMenu_CenterView_Icn_blackLine, MainActivity_MainView.mainBottomMenu_CenterView_Icn_blackLine.getImageAlpha(), 1, 200);
+//                    Utils_Anim.drawableAlphaAnim(MainActivity_MainView.mainBottomMenu_CenterView_Icn_blackLine, MainActivity_MainView.mainBottomMenu_CenterView_Icn_blackLine.getImageAlpha(), 1, 200);
 
-                    Utils_Anim.RotateAnim(MainActivity_MainView.mainBottomMenu_CenterView_Icn, 0, icnRotate_deg, 0.5f, 0.5f, 500);
+                    Utils_Anim.AlphaAnim(MainActivity_MainView.menuViewRl, 0, 1, 300);
+
+
+//                    Utils_Anim.RotateAnim(MainActivity_MainView.mainBottomMenu_CenterView_Icn, 0, icnRotate_deg, 0.5f, 0.5f, 500);
                     MainActivity_MainView.mainBottomMenu_CenterRlView.setOnClickListener(this);
-                    circle_originAnim(400);
-                    Utils_Calc.delayMin(5, new Utils_Calc.DelayCallback() {
+//                    circle_originAnim(400);
+                    Utils_Calc.delayMin(4, new Utils_Calc.DelayCallback() {
                         @Override
                         public void afterDelay() {
-                            mainBottomMenu_CenterCircle.setY(MainBottom_GooeyView.circleSetOriginY);
+                            MainActivity_MainView.menuViewRl.setAlpha(1);
+                            MainActivity_MainView.changeView_About();
                         }
                     });
-                    aboutPageAnim(true);
+
+//                    aboutPageAnim(true);
+
+                    aboutInMainReset();
                 }
 
                 if (drag){
@@ -168,12 +186,14 @@ public class MainBottom_CircleView extends android.support.v7.widget.AppCompatIm
                         if (!dragENTER) {
                             /// position - top
                             dragENTER = true;
-                            Utils_Anim.TransAnim(MainActivity_MainView.mainBottomMenu_CenterRlView, 0, 0, -(MainActivity_MainView.screenHeight/2 - (MainBottom_GooeyView.circleWidth + dragMove_y)), 0, 100);
+//                            Utils_Anim.TransAnim(MainActivity_MainView.mainBottomMenu_CenterRlView, 0, 0, -(MainActivity_MainView.screenHeight/2 - (MainBottom_GooeyView.circleWidth + dragMove_y)), 0, 100);
 //                            Utils_Anim.TransAnim(MainActivity_MainView.mainBottomMenu_CenterRlView, -(MainBottom_GooeyView.circleSetOriginX - dragMove_x), 0, -(MainActivity_MainView.screenHeight / 2 - (MainBottom_GooeyView.circleWidth + dragMove_y)), 0, 100);
 //                            MainActivity_MainView.mainBottomMenu_CenterRlView.setX(MainBottom_GooeyView.circleSetOriginX);
 //                            MainActivity_MainView.mainBottomMenu_CenterRlView.setY(MainActivity_MainView.screenHeight/2 - MainBottom_GooeyView.circleWidth);
 
-                            MainActivity_MainView.mainBottomMenu_CenterRlView.setY(0 + MainBottom_GooeyView.circleWidth/circleRate);
+//                            MainActivity_MainView.mainBottomMenu_CenterRlView.setY(0 + MainBottom_GooeyView.circleWidth/circleRate);
+
+                            MainActivity_MainView.mainBottomMenu_CenterRlView.setY(0 + MainActivity_MainView.screenHeight/2 - MainBottom_GooeyView.circleWidth);
                             MainActivity_MainView.mainBottomMenu_CenterRlView.invalidate();
 
                             Utils_Anim.AlphaAnim(MainActivity_MainView.menuViewRl, MainActivity_MainView.menuViewRl.getAlpha(), 1, 200);
@@ -182,17 +202,25 @@ public class MainBottom_CircleView extends android.support.v7.widget.AppCompatIm
                             MainBottom_GooeyView.float_calcRate_alpha_in = 1;
                             MainBottom_GooeyView.float_calcRate_alpha_out = 0;
 
-                            Utils_Anim.drawableAlphaAnim(MainActivity_MainView.mainBottomMenu_CenterView_IndexColor, MainActivity_MainView.mainBottomMenu_CenterView_IndexColor.getImageAlpha(), 0, 200);
-                            Utils_Anim.drawableAlphaAnim(MainActivity_MainView.mainBottomMenu_CenterView_Icn_whiteLine, MainActivity_MainView.mainBottomMenu_CenterView_Icn_whiteLine.getImageAlpha(), 0, 200);
-                            Utils_Anim.drawableAlphaAnim(MainActivity_MainView.mainBottomMenu_CenterView_Icn_blackLine, MainActivity_MainView.mainBottomMenu_CenterView_Icn_blackLine.getImageAlpha(), 1, 200);
+//                            Utils_Anim.drawableAlphaAnim(MainActivity_MainView.mainBottomMenu_CenterView_IndexColor, MainActivity_MainView.mainBottomMenu_CenterView_IndexColor.getImageAlpha(), 0, 200);
+//                            Utils_Anim.drawableAlphaAnim(MainActivity_MainView.mainBottomMenu_CenterView_Icn_whiteLine, MainActivity_MainView.mainBottomMenu_CenterView_Icn_whiteLine.getImageAlpha(), 0, 200);
+//                            Utils_Anim.drawableAlphaAnim(MainActivity_MainView.mainBottomMenu_CenterView_Icn_blackLine, MainActivity_MainView.mainBottomMenu_CenterView_Icn_blackLine.getImageAlpha(), 1, 200);
 
                             Utils_Anim.AlphaAnim(MainBottom_GooeyView.gooeyview_canvas, MainBottom_GooeyView.gooeyview_canvas.getAlpha(), 0, 400);
 
-                            Utils_Anim.RotateAnim(MainActivity_MainView.mainBottomMenu_CenterView_Icn, 0, icnRotate_deg, 0.5f, 0.5f, 500);
+//                            Utils_Anim.RotateAnim(MainActivity_MainView.mainBottomMenu_CenterView_Icn, 0, icnRotate_deg, 0.5f, 0.5f, 500);
                             MainActivity_MainView.mainBottomMenu_CenterRlView.setOnClickListener(this);
                             circle_originAnim(400);
+                            MainActivity_MainView.changeView_About();
 
-                            aboutPageAnim(true);
+                            Utils_Calc.delayMin(0, new Utils_Calc.DelayCallback() {
+                                @Override
+                                public void afterDelay() {
+
+                                }
+                            });
+
+                            aboutInMainReset();
                         }
                     } else {
                         /// position - bottom
@@ -218,7 +246,7 @@ public class MainBottom_CircleView extends android.support.v7.widget.AppCompatIm
 
                             Utils_Anim.AlphaAnim(MainBottom_GooeyView.gooeyview_canvas, MainBottom_GooeyView.gooeyview_canvas.getAlpha(), 0, 200);
 
-                            Utils_Anim.RotateAnim(MainActivity_MainView.mainBottomMenu_CenterView_Icn, MainActivity_MainView.mainBottomMenu_CenterView_Icn.getRotation(), 0, 0.5f, 0.5f, 300);
+//                            Utils_Anim.RotateAnim(MainActivity_MainView.mainBottomMenu_CenterView_Icn, MainActivity_MainView.mainBottomMenu_CenterView_Icn.getRotation(), 0, 0.5f, 0.5f, 300);
                             circle_originAnim(400);
                             Utils_Calc.delayMin(5, new Utils_Calc.DelayCallback() {
                                 @Override
@@ -304,7 +332,7 @@ public class MainBottom_CircleView extends android.support.v7.widget.AppCompatIm
                     circle_originAnim(0);
                     mainBottomMenu_CenterCircle.setY(MainBottom_GooeyView.circleSetOriginY);
 
-                    aboutPageAnim(false);
+//                    aboutPageAnim(false);
                 } else {
 
                 }
@@ -314,18 +342,57 @@ public class MainBottom_CircleView extends android.support.v7.widget.AppCompatIm
 
     static void aboutPageAnim(Boolean bool){
         if (bool){
-            Utils_Anim.AlphaAnim(MainActivity_MainView.aboutView_dv, 1, 0.85f, 400);
-            MainActivity_MainView.aboutView_fl.setX(0);
             MainActivity_MainView.main_fl.setX(MainActivity_MainView.screenHeight);
-            MainActivity_MainView.playVideo();
-            MainActivity_MainView.aboutView_sv.scrollTo(0, 0);
         } else {
-            Utils_Anim.AlphaAnim(MainActivity_MainView.aboutView_dv, 0.85f, 1, 200);
             MainActivity_MainView.main_fl.setX(0);
-            MainActivity_MainView.aboutView_fl.setX(MainActivity_MainView.screenWidth);
-            MainActivity_MainView.stopVideo();
         }
     }
+
+    static void aboutInMainReset(){
+        Utils_Calc.delayMin(80, new Utils_Calc.DelayCallback() {
+            @Override
+            public void afterDelay() {
+                /////// reset
+                dragENTER = false;
+                drag = false;
+                Utils_Anim.TransAnim(MainActivity_MainView.mainBottomMenu_CenterRlView, 0, 0, -(MainBottom_GooeyView.circleSetOriginY-dragMove_y), 0, 000);
+                MainActivity_MainView.mainBottomMenu_CenterRlView.setY(MainBottom_GooeyView.circleSetOriginY);
+                MainActivity_MainView.mainBottomMenu_CenterRlView.invalidate();
+
+                MainBottom_GooeyView.float_calcRate_alpha_in = 0;
+                MainBottom_GooeyView.float_calcRate_alpha_out = 1;
+
+                if (MainActivity_MainView.menuViewRl.getAlpha() != 0){
+                    Utils_Anim.AlphaAnim(MainActivity_MainView.menuViewRl, MainActivity_MainView.menuViewRl.getAlpha(), 0, 000);
+                    Utils_Anim.drawableAlphaAnim(MainActivity_MainView.mainBottomMenu_CenterView_IndexColor, MainActivity_MainView.mainBottomMenu_CenterView_IndexColor.getImageAlpha(), 1, 000);
+                    Utils_Anim.drawableAlphaAnim(MainActivity_MainView.mainBottomMenu_CenterView_Icn_whiteLine, MainActivity_MainView.mainBottomMenu_CenterView_Icn_whiteLine.getImageAlpha(), 1, 000);
+                    Utils_Anim.drawableAlphaAnim(MainActivity_MainView.mainBottomMenu_CenterView_Icn_blackLine, MainActivity_MainView.mainBottomMenu_CenterView_Icn_blackLine.getImageAlpha(), 0, 000);
+                }
+
+                Utils_Anim.AlphaAnim(MainBottom_GooeyView.gooeyview_canvas, MainBottom_GooeyView.gooeyview_canvas.getAlpha(), 0, 000);
+                circle_originAnim(000);
+
+                MainBottom_GooeyView.gooeyview_canvas.setAlpha(0);
+                mainBottomMenu_CenterCircle.setY(MainBottom_GooeyView.circleSetOriginY);
+//                aboutPageAnim(false);
+            }
+        });
+    }
+
+//    static void aboutPageAnim(Boolean bool){
+//        if (bool){
+//            Utils_Anim.AlphaAnim(MainActivity_MainView.aboutView_dv, 1, 0.85f, 400);
+//            MainActivity_MainView.aboutView_fl.setX(0);
+//            MainActivity_MainView.main_fl.setX(MainActivity_MainView.screenHeight);
+//            MainActivity_MainView.playVideo();
+//            MainActivity_MainView.aboutView_sv.scrollTo(0, 0);
+//        } else {
+//            Utils_Anim.AlphaAnim(MainActivity_MainView.aboutView_dv, 0.85f, 1, 200);
+//            MainActivity_MainView.main_fl.setX(0);
+//            MainActivity_MainView.aboutView_fl.setX(MainActivity_MainView.screenWidth);
+//            MainActivity_MainView.stopVideo();
+//        }
+//    }
 
 
 }

@@ -4,106 +4,106 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/aboutView">
+    android:id="@+id/aboutView_ssssss">
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:clipToPadding="false"
-        android:background="@color/main_bg"
-        android:id="@+id/aboutView_fl">
+    <!--<FrameLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:clipToPadding="false"-->
+        <!--android:background="@color/main_bg"-->
+        <!--android:id="@+id/aboutView_fl">-->
 
-        <com.example.n_iso.MyVideoView
-            android:id="@+id/aboutView_vv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true" />
+        <!--<com.example.n_iso.MyVideoView-->
+            <!--android:id="@+id/aboutView_vv"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_alignParentTop="true" />-->
 
-        <ImageButton
-            android:id="@+id/play_button"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:alpha="0" />
+        <!--<ImageButton-->
+            <!--android:id="@+id/play_button"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:layout_gravity="center_vertical|center_horizontal"-->
+            <!--android:alpha="0" />-->
 
-        <View
-            android:id="@+id/aboutView_dv"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:alpha="0.9"
-            android:background="@color/black" />
+        <!--<View-->
+            <!--android:id="@+id/aboutView_dv"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:layout_gravity="center_vertical|center_horizontal"-->
+            <!--android:alpha="0.9"-->
+            <!--android:background="@color/black" />-->
 
-        <ScrollView
-            android:id="@+id/aboutView_sv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none">
+        <!--<ScrollView-->
+            <!--android:id="@+id/aboutView_sv"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:scrollbars="none">-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:orientation="vertical">-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="@dimen/mainTop_Margin"
-                    android:orientation="vertical">
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_marginRight="30dp"-->
+                    <!--android:layout_marginLeft="30dp"-->
+                    <!--android:layout_marginTop="30dp"-->
+                    <!--android:layout_marginBottom="@dimen/mainTop_Margin"-->
+                    <!--android:orientation="vertical">-->
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp" />
+                    <!--<View-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="100dp" />-->
 
-                    <TextView
-                        android:id="@+id/about_title"
-                        android:fontFamily="@font/noto_serif_bold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:text="TextView"
-                        android:lineSpacingExtra="10sp"
-                        android:textAllCaps="true"
-                        android:textSize="22sp"
-                        android:textColor="@color/white" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/about_title"-->
+                        <!--android:fontFamily="@font/noto_serif_bold"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginBottom="20dp"-->
+                        <!--android:text="TextView"-->
+                        <!--android:lineSpacingExtra="10sp"-->
+                        <!--android:textAllCaps="true"-->
+                        <!--android:textSize="22sp"-->
+                        <!--android:textColor="@color/white" />-->
 
-                    <TextView
-                        android:id="@+id/about_ptag"
-                        android:fontFamily="@font/noto_sans"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="50dp"
-                        android:text="TextView"
-                        android:lineSpacingExtra="7sp"
-                        android:textSize="16sp"
-                        android:textColor="@color/grey_1" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/about_ptag"-->
+                        <!--android:fontFamily="@font/noto_sans"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginBottom="50dp"-->
+                        <!--android:text="TextView"-->
+                        <!--android:lineSpacingExtra="7sp"-->
+                        <!--android:textSize="16sp"-->
+                        <!--android:textColor="@color/grey_1" />-->
 
-                    <TextView
-                        android:id="@+id/about_footer"
-                        android:fontFamily="@font/noto_sans"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="TextView"
-                        android:lineSpacingExtra="7sp"
-                        android:textSize="16sp"
-                        android:textColor="@color/grey_2" />
-                </LinearLayout>
+                    <!--<TextView-->
+                        <!--android:id="@+id/about_footer"-->
+                        <!--android:fontFamily="@font/noto_sans"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="TextView"-->
+                        <!--android:lineSpacingExtra="7sp"-->
+                        <!--android:textSize="16sp"-->
+                        <!--android:textColor="@color/grey_2" />-->
+                <!--</LinearLayout>-->
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
 
-        </ScrollView>
+        <!--</ScrollView>-->
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="190dp"
-            android:background="@drawable/bg_black_gradient_rev" />
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="190dp"-->
+            <!--android:background="@drawable/bg_black_gradient_rev" />-->
 
-    </FrameLayout>
+    <!--</FrameLayout>-->
 
 </RelativeLayout>

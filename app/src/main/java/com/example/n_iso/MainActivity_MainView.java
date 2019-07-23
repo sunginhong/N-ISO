@@ -2,6 +2,7 @@ package com.example.n_iso;
 
 import android.animation.LayoutTransition;
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -15,6 +16,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.transition.ChangeBounds;
 import android.util.Log;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -43,6 +45,7 @@ public class MainActivity_MainView extends AppCompatActivity  {
 
     private ViewPager mViewPager;
     static Toolbar myToolbar;
+    static Context context;
 
     static int currentPageIndex = 0;
     static int myToolbarHeight = 0;
@@ -66,15 +69,12 @@ public class MainActivity_MainView extends AppCompatActivity  {
     static ImageView mainBottomMenu_CenterView_Icn_blackLine;
     static ImageView mainBottomMenu_CenterView_Icn_whiteLine;
 
-    static View aboutView_dv;
-    static FrameLayout aboutView_fl;
-    static MyVideoView aboutView_vv;
-    static ImageButton mPlayButton;
+//    static MyVideoView aboutView_vv;
+    static Uri aboutVideo;
 
-    static ScrollView aboutView_sv;
-    static TextView about_title;
-    static TextView about_ptag;
-    static TextView about_footer;
+//    static View aboutView_dv;
+//    static FrameLayout aboutView_fl;
+//    static MyVideoView aboutView_vv;
     static Vibrator mVibrator;
 
     final ArrayList<FrameLayout> arrayBtmButton = new ArrayList<FrameLayout>();
@@ -87,6 +87,9 @@ public class MainActivity_MainView extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_vp);
+
+//        context = ApplicationClass.getContext();
+        context = this;
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -119,63 +122,11 @@ public class MainActivity_MainView extends AppCompatActivity  {
 
         main_bottom_actionbar_Height = Utils_Calc.dpToPx(56);
 
-        aboutView_fl = (FrameLayout) findViewById(R.id.aboutView_fl);
-        aboutView_fl.setX(screenWidth);
-        aboutView_dv = (View) findViewById(R.id.aboutView_dv);
-        aboutView_vv = (MyVideoView) findViewById(R.id.aboutView_vv);
-//        MediaController controller = new MediaController(this);
-//        aboutView_vv.setMediaController(controller);
-        aboutView_vv.requestFocus();
-
-//        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(screenHeight, screenWidth);
-//        aboutView_vv.setLayoutParams(lp);
-
-        Uri aboutVideo = Uri.parse("android.resource://" + getPackageName()+ "/"+R.raw.reel);
-        aboutView_vv.setVideoURI(aboutVideo);
-
-//        aboutView_vv.setVideoURI(Uri.parse("http://n-interaction.com/appData/reel.mp4"));
-        playVideo();
-        stopVideo();
-
-//        playVideo();
-//        aboutView_vv.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-//            // 동영상 재생준비가 완료된후 호출되는 메서드
-//            @Override
-//            public void onPrepared(MediaPlayer mp) {
-//                stopVideo();
-//            }
-//        });
-
-        // 동영상 재생이 완료된걸 알수있는 리스너
-        aboutView_vv.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            // 동영상 재생이 완료된후 호출되는 메서드
-            public void onCompletion(MediaPlayer player) {
-                playVideo();
-            }
-        });
+        aboutVideo = Uri.parse("android.resource://" + getPackageName()+ "/"+R.raw.reel);
 
         init_btn();
-
-        /////
-        aboutView_sv = (ScrollView) findViewById(R.id.aboutView_sv);
-        about_title = (TextView) findViewById(R.id.about_title);
-        about_ptag = (TextView) findViewById(R.id.about_ptag);
-        about_footer = (TextView) findViewById(R.id.about_footer);
-
-        about_title.setText(MainActivity_Splash.aboutTitle);
-        about_ptag.setText(MainActivity_Splash.aboutPtag_kor);
-        about_footer.setText(MainActivity_Splash.aboutFooter);
     }
 
-    static void playVideo() {
-        aboutView_vv.seekTo(0);
-        aboutView_vv.start();
-    }
-
-    static void stopVideo() {
-        aboutView_vv.pause();
-//        aboutView_vv.stopPlayback();
-    }
 
     private void init_btn() {
         TextView bottomMenu_btn_text_01 = (TextView) findViewById(R.id.bottomMenu_btn_text_01);
@@ -326,6 +277,18 @@ public class MainActivity_MainView extends AppCompatActivity  {
                 }
             }
         }
+    }
+
+    static void changeView_About () {
+        Intent intent = new Intent(context, Main_AboutDetailView.class);
+//        MainActivity_MainView.mainBottomMenu_CenterRlView.getContext().startActivity(intent);
+
+//        ActivityOptions options = ActivityOptions
+//                .makeSceneTransitionAnimation(this, mainBottomMenu_CenterRlView, "d");
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((MainActivity_MainView) context,
+                Pair.create((View)mainBottomMenu_CenterRlView, mainBottomMenu_CenterRlView.getTransitionName()));
+        MainActivity_MainView.mainBottomMenu_CenterRlView.getContext().startActivity(intent, options.toBundle());
+        menuViewRl.setAlpha(1);
     }
 
 

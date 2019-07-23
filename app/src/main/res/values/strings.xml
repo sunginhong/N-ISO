@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">N_ISO</string>
+    <string name="activity_about_trans">activity_about_trans</string>
 </resources>

@@ -94,12 +94,11 @@
 
 
 
-    <include
-        android:id="@+id/aboutpage_layout"
-        layout="@layout/aboutpage_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-  />
+    <!--<include-->
+        <!--android:id="@+id/aboutpage_layout"-->
+        <!--layout="@layout/aboutpage_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
 
     <com.example.n_iso.MainBottom_GooeyView
         android:id="@+id/gooeyview_canvas"
@@ -113,14 +112,18 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
-        android:clipChildren="false">
+        android:clipChildren="false"
+        android:background="#00FFFFFF"
+        android:transitionName="@string/activity_about_trans"
+        >
 
         <ImageView
             android:id="@+id/mainBottomMenu_CenterView_White"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:alpha="1"
-            android:background="@drawable/centercircle_white" />
+            android:background="@drawable/centercircle_white"
+            android:transitionName="@string/activity_about_trans"/>
 
         <ImageView
             android:id="@+id/mainBottomMenu_CenterView_Index"

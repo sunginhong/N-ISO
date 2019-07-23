@@ -87,7 +87,7 @@ public class Main_TabFragment1_VpAdapter extends PagerAdapter implements View.On
         Main_TabFragment1_Blog_vpInteraction.thumbImage.add(main_tab_fragment_1_item_pager_imgView);
 
         Glide.with(context)
-                .asGif()
+//                .asGif()
                 .load(list.get(i).getImage())
                 .centerCrop()
                 .skipMemoryCache(true)
