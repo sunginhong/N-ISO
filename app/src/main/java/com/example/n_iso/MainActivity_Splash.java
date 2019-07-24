@@ -89,7 +89,7 @@ public class MainActivity_Splash extends AppCompatActivity {
                 //LTE(이동통신망)에 연결됨
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);     // 여기서 this는 Activity의 this
 
-                builder.setTitle("WIFI환경에서 사용을 권장합니다.")        // 제목 설정
+                builder.setTitle("많은 이미지가 포함되어 있어\n" +"WIFI환경에서 사용을 권장합니다.")        // 제목 설정
                         .setMessage("서비스를 계속진행하시겠습니까?")        // 메세지 설정
                         .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
                         .setPositiveButton("확인", new DialogInterface.OnClickListener(){
@@ -111,12 +111,12 @@ public class MainActivity_Splash extends AppCompatActivity {
 
                 AlertDialog dialog = builder.create();    // 알림창 객체 생성
 
-//                dialog.show();    // 알림창 띄우기
+                dialog.show();    // 알림창 띄우기
 
-                new NetworkTask_Get_About_Parse("http://n-interaction.com/?page_id=8", null).execute();
-                new NetworkTask_Get_Ninteraction_Parse("http://n-interaction.com", null, 0).execute();
-                ProcessXmlTask xmlTask = new ProcessXmlTask();
-                xmlTask.execute("https://rss.blog.naver.com/nvr_design.xml?rss=1.0");
+//                new NetworkTask_Get_About_Parse("http://n-interaction.com/?page_id=8", null).execute();
+//                new NetworkTask_Get_Ninteraction_Parse("http://n-interaction.com", null, 0).execute();
+//                ProcessXmlTask xmlTask = new ProcessXmlTask();
+//                xmlTask.execute("https://rss.blog.naver.com/nvr_design.xml?rss=1.0");
 
             }
         } else {
@@ -125,7 +125,7 @@ public class MainActivity_Splash extends AppCompatActivity {
 
             builder.setTitle("알람 팝업")        // 제목 설정
                     .setMessage("네트워크에 연결 되지 않았으며\n" +
-                            "본 서비스는 WIFI환경에서 사용을 권장합니다")        // 메세지 설정
+                            "본 서비스는 WIFI환경에서 사용을 권장합니다.")        // 메세지 설정
                     .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
                     .setNegativeButton("닫기", new DialogInterface.OnClickListener(){
                         // 취소 버튼 클릭시 설정
