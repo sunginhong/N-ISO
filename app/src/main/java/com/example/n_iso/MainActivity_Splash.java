@@ -325,7 +325,7 @@ public class MainActivity_Splash extends AppCompatActivity {
             this.idx = idx;
 
             try {
-                Document document = Jsoup.connect(url_mobile).get();
+                Document document = Jsoup.connect(url_mobile).userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36").get();
                 websiteTitle = document.title();
 
                 Elements metaElems = document.select("meta");
@@ -338,6 +338,7 @@ public class MainActivity_Splash extends AppCompatActivity {
                 if (metaOgImage != null) {
                     imgurl = metaOgImage.first().attr("content");
                     thumbImage[idx] = imgurl;
+
                     if (idx == display-1){
                         splashEnd();
                     }
@@ -355,7 +356,7 @@ public class MainActivity_Splash extends AppCompatActivity {
             RequestHttpURLConnection requestHttpURLConnection = new RequestHttpURLConnection();
             result = requestHttpURLConnection.request(url_mobile, values); // 해당 URL로 부터 결과물을 얻어온다.
             try {
-                Document document = Jsoup.connect(url_mobile).get();
+                Document document = Jsoup.connect(url_mobile).userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36").get();
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -408,7 +409,7 @@ public class MainActivity_Splash extends AppCompatActivity {
 
                 result = builder.toString();
                 /////
-                Document document = Jsoup.connect(strUrl).get();
+                Document document = Jsoup.connect(strUrl).userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36").get();
                 Elements div = document.select("div");
                 Elements menuItemObjectPost = document.select("a");
                 Elements date = document.select("div[class=date]");
@@ -477,7 +478,7 @@ public class MainActivity_Splash extends AppCompatActivity {
             this.idx = idx;
 
             try {
-                Document document = Jsoup.connect(url_mobile).get();
+                Document document = Jsoup.connect(url_mobile).userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36").get();
                 websiteTitle = document.title();
 
                 /////
@@ -491,9 +492,11 @@ public class MainActivity_Splash extends AppCompatActivity {
                 //출력
                 mainListCategoryList.add(category.get(0).text());
 
+
                 for(int k = 0; k < array.length; k++) {
                     if (array[k].equals(" Interaction") || array[k].equals(" motion") || array[k].equals(" Logo")){
                         mainListCategory.add(array[k]);
+//                        Log.d("ssssssssssss", "sssss"+MainActivity_Splash.mainListCategory.get(k));
                     }
                 }
                 mainListThumb.add(img.get(1).attr("src"));
@@ -519,7 +522,7 @@ public class MainActivity_Splash extends AppCompatActivity {
             RequestHttpURLConnection requestHttpURLConnection = new RequestHttpURLConnection();
             result = requestHttpURLConnection.request(url_mobile, values); // 해당 URL로 부터 결과물을 얻어온다.
             try {
-                Document document = Jsoup.connect(url_mobile).get();
+                Document document = Jsoup.connect(url_mobile).userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36").get();
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -573,7 +576,7 @@ public class MainActivity_Splash extends AppCompatActivity {
 
                 result = builder.toString();
                 /////
-                Document document = Jsoup.connect(strUrl).get();
+                Document document = Jsoup.connect(strUrl).userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36").get();
                 Elements div = document.select("div");
                 Elements title = document.select("div[class=front-title]");
                 Elements ptag = document.select("p");

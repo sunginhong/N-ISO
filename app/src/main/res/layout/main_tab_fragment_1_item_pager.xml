@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/main_tab_fragment_1_item_pager_description"
             android:fontFamily="@font/noto_serif_bold"
-            android:lineHeight="38sp"
+
             android:lineSpacingExtra="12sp"
             android:singleLine="true"
             android:maxLines="1"
