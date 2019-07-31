@@ -43,6 +43,7 @@ public class Main_TabFragment3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         data_parse();
         layout = (LinearLayout) inflater.inflate(R.layout.main_tab_fragment_3, container, false);
+
         return layout;
     }
 
